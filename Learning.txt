@@ -62,6 +62,8 @@ Modules : Its a logical container, that groups related anugalr building block to
 
 Bootstraping : Angular creates the root component and begins rendering UI.
 
+Decorators : It gives the meta data, data about the data. 
+
 NodeJs : Its a javascript runtime environment, that allows JS to run outside the browser.
 
 Why angular needs NodeJs : angular application runs on browser, but angular development kit runs on nodejs. Angular uses NodeJs as the development environment.
@@ -80,6 +82,9 @@ Commands of ANGULAR CLI :
     here; ng - angular cli, new - new project, `project name`
     * Angular CLI starts, creates the project blueprint and the angular project will be created. 
 
+Compilation process :
+    ng serve -> angular CLI starts -> reads angular.json -> reads tsconfig.json -> reads main.ts -> angular compiler starts -> read all .ts files -> understands components -> processes angular templates -> compile ts to js -> bundle html, css -> creates optimised file -> development server starts -> browser downloads html, css, js -> browser executes js -> application appears. 
+
 ------------------------------------------------------------------------------------------
 
 Project architecture : 
@@ -96,7 +101,7 @@ Project architecture :
         * @angular-router : Used for navigation.
         * rxjs : Library file used for asynchronous data and stream of values.
         * tslib : contains helper functions for typescript compilation.
-        * Zone.js : it helps angualar to know, when the asynchronous operation complete and allowing angular to update the UI at the right time. 
+        * Zone.js : it helps angular to know, when the asynchronous operation complete and allowing angular to update the UI at the right time. 
     
     2) node modules : 
         * The folder where the installed packages will be stored around.
@@ -106,6 +111,26 @@ Project architecture :
 
     workflow : Developer -> npm install -> reads package.json -> reads package-lock.json(if present) -> npm registry -> download exact version -> stroes in node modules -> app ready.  
 
+    4) angular.json :
+        * Its a wrokspace configuration file. It tells the angular CLI how to build, serve, test, manage the application. Its like project settings.
+        * ng serve -> Angular CLI -> angular.json -> finds project settings -> starts build
+        * $schema : it helps the vs code to understand the angular.json
+        * angular CLI heavily depends on this file. It helps to add global dependencies.
+        * "build" :{...} : it compiles the angular code. ng serve -> angular CLI -> angular.json -> builder -> compiles angular -> browser
+        * output path : Once the files are compiled, stroed in the dist folder. 
+        * main.ts : starting point of the execution. main.ts -> tsconfig.app.json -> typescript compiler -> javascript.
+
+    5) Complete execution : 
+        ng serve -> package.json -> uses installed angular packages ->reads angular.json -> looks for  builder -> finds @angular-dev-kit/build-angular -> reads tsconfig.app.json -> compiles main.ts -> processes angular components -> ts to js -> starts development server -> browser opens in 4200 -> browser downloads html, css, js -> application appears. 
+
+    6) tsconfig.json : 
+        * its the configuration file for the typescript compiler, to specify how the ts code should be compiled to js. 
+        * compileOn : false : If the file saved, the typescript automatically compiles or not.
+        * compilerOptions : target(JS version), module(allows import and export JS files), strict(catches error during execution), noImplicitAny(data types in parameters of function), experimentalDecorators(it allows the decorators)
+        * It verifies the base configuration.
+    
+    7) tsconfig.app.json : Rules for the application
+    8) tsconfig.spec.json : Rules for testing
     
 ------------------------------------------------------------------------------------------
 
