@@ -1,0 +1,19 @@
+Why angular was created : 
+    * Angular was created to manage the large dynamic web projects.
+    * it introduces the structured, components-based framework with features like dependency injection, routing, reusable components, testing support, making applications easier to develop, maintain and scale
+
+Difference between AngularJS and Angular :
+    * AngularJS was the original framework based on javascript and based largely on controllers and digest cycles.
+    * Angular 2 was based on components based architecture, wirtten using typescript.
+    * Better performances, improved tooling and a design intended for large, scalable applications. 
+
+Data binding is the mechanism by which angular synchronizes data between the component and view. it allows data to flow from view to component, component to view or both, there are two different types;
+    1. One way binding
+    2. Two way binding
+
+One way binding has 3 different methods;
+    * Interpolation => component - view => {{}}
+    * Property binding => component - view => []
+    * Event binding => view - component => ()
+
+Two way binding has only one method : ngModel => [(ngModel)]="name". The data would be passed from component - view and view - component. To use this model, we need to import the library of `FormsModule` 
