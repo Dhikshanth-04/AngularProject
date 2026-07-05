@@ -8,7 +8,7 @@ Difference between AngularJS and Angular :
     * Better performances, improved tooling and a design intended for large, scalable applications. 
 
 Semantic Versioning : 
-    * The Semantic Versioning is the process of naming the version, with thw meaning full context, initial version: 1.0, small feature added, it would be 1.1, if the whole new design is produced, this is version 2.0. This naming process is known as semantic versioning.
+    * The Semantic Versioning is the process of naming the version, with the meaning full context, initial version: 1.0, small feature added, it would be 1.1, if the whole new design is produced, this is version 2.0. This naming process is known as semantic versioning. (major. minor. patch)
 
 ------------------------------------------------------------------------------------------
 
@@ -62,15 +62,44 @@ Modules : Its a logical container, that groups related anugalr building block to
 
 Bootstraping : Angular creates the root component and begins rendering UI.
 
-Command for creating new angular project : ng new `project name`
+NodeJs : Its a javascript runtime environment, that allows JS to run outside the browser.
+
+Why angular needs NodeJs : angular application runs on browser, but angular development kit runs on nodejs. Angular uses NodeJs as the development environment.
+
+Dependency tree : The series of dependencies linked to one to another. 
+
+------------------------------------------------------------------------------------------
+
+Angular CLI : 
+    * Command Line Interface. Instead of clicking the buttons, we communicate through commands with software.
+    * Its the official command line interface provided by the angular team, it automates the creation, development, testing, building and maintenance of angular applications through the commands. 
+    * It does not runs the app on browser, it prepares and serves the application during the development. 
+
+Commands of ANGULAR CLI : 
+    * Creating new angular project : ng new `project name`. 
+    here; ng - angular cli, new - new project, `project name`
+    * Angular CLI starts, creates the project blueprint and the angular project will be created. 
 
 ------------------------------------------------------------------------------------------
 
 Project architecture : 
-    * tsconfig.json : Typescript related details and setup will be in this file.
-    * tsconfig.app.json : app related details regarding typescript will be mentioned here, extends the tsconfig.json. it has two main attributes; src : linking of main typescript and include : type of typescript related details
-    * tsconfig.spec.json : used for testing the results.
+    1) package.json : 
+        * Its a the configuration file that contains the projct information, dependencies, scripts, version info and other meta data required to manage the project.
+        * name - name of the project
+        * version - version of the project, semantic versioning (major. minor. patch)
+        * scripts - shortcuts of the commands.
+        * dependencies - the list of packages required for the application to work.
+        * devDependencies - the tools thats required by the developers - typescript, angular, etc...
+    
+    2) node modules : 
+        * The folder where the installed packages will be stored around.
+        * Its a huge folder, because the dependencies are linked to one another.
 
+    3) package-lock.json : It stores the exact version of installed packages and their dependency tree, ensuring consistent installations for different environments. 
+
+    workflow : Developer -> npm install -> reads package.json -> reads package-lock.json(if present) -> npm registry -> download exact version -> stroes in node modules -> app ready.  
+
+    
 ------------------------------------------------------------------------------------------
 
 Data binding is the mechanism by which angular synchronizes data between the component and view. it allows data to flow from view to component, component to view or both, there are two different types;
