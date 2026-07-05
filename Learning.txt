@@ -7,6 +7,50 @@ Difference between AngularJS and Angular :
     * Angular 2 was based on components based architecture, wirtten using typescript.
     * Better performances, improved tooling and a design intended for large, scalable applications. 
 
+Semantic Versioning : 
+    * The Semantic Versioning is the process of naming the version, with thw meaning full context, initial version: 1.0, small feature added, it would be 1.1, if the whole new design is produced, this is version 2.0. This naming process is known as semantic versioning.
+
+Angular 2 features:
+    * component based architecture, which provides the more smaller broken modules instead of holding up the large blocks
+    * It chooses the typescript, because of type safe, better performance, lrge team development.
+    * more efficient change detection, than AngularJS
+    * Built with the innovation of modern web and mobile in mind.
+
+Angular 3?
+    * Angular 3 was intentionally skipped to synchronise the versions name, where some of angular packages like router were already reached version 3.
+
+Angular 4: Better performance, improved animations, smaller bundle sizes, fast rendering.
+
+Angular 5: Developer focused - fast to build, easier to ship, better compiler support.
+
+Angular 6: Angular CLI automated, the generation of components through commands. Made libraries easier to share - Angular package format.
+
+Angular 7: performance, virtual scrolling, Drag and drop support through Component Dev Kit.
+
+Angular 8: Lazy loading improvements, loads the page only when the user needs it.
+
+Angular 9: 
+    * The introduction of IVY compiler, Angular's modern compiler and rendering engine, which improved the compilation speend, reduced the bundle size, better for debugging and made applications faster and more efficient.
+
+Angular 10 - 13: Improved the speed, stability, foundation of IVY compiler. 
+
+
+
+Component : Its the small block of reusable code, works independently, and the part of the UI, like navrbar, search bar, footer, etc...
+
+Modules : Its a logical container, that groups related anugalr building block together. For Example : Authentication module : login component, Register component, Forgot password component.
+
+Command for creating new angular project : ng new `project name`
+
+Project architecture : 
+    * tsconfig.json : Typescript related details and setup will be in this file.
+    * tsconfig.app.json : app related details regarding typescript will be mentioned here, extends the tsconfig.json. it has two main attributes; src : linking of main typescript and include : type of typescript related details
+    * tsconfig.spec.json : used for testing the results.
+
+
+
+
+
 Data binding is the mechanism by which angular synchronizes data between the component and view. it allows data to flow from view to component, component to view or both, there are two different types;
     1. One way binding
     2. Two way binding
