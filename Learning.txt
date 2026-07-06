@@ -58,7 +58,7 @@ Angular 18 - 20: Server side improvement, signal improvement, performance.
 
 Component : Its the small block of reusable code, works independently, and the part of the UI, like navrbar, search bar, footer, etc...
 
-Modules : Its a logical container, that groups related anugalr building block together. For Example : Authentication module : login component, Register component, Forgot password component.
+Modules : Its a logical container, that groups or organizes related anugalr building block together. For Example : Authentication module : login component, Register component, Forgot password component.
 
 Bootstraping : Angular creates the root component and begins rendering UI.
 
@@ -69,6 +69,13 @@ NodeJs : Its a javascript runtime environment, that allows JS to run outside the
 Why angular needs NodeJs : angular application runs on browser, but angular development kit runs on nodejs. Angular uses NodeJs as the development environment.
 
 Dependency tree : The series of dependencies linked to one to another. 
+
+NgModule : Its the decorator object, which registers about the meta data. In this file, the components, imports, Declarations, providers and also specifies the bootstrap component will be mentioned, when the application starts.
+
+Components : These are smaller reusable parts of the User Interface(UI) by combining a typescript class, html template and css styles. Each component has one responsibility, this is called as Single Responsibility Principle. 
+
+
+
 
 ------------------------------------------------------------------------------------------
 
@@ -81,6 +88,8 @@ Commands of ANGULAR CLI :
     * Creating new angular project : ng new `project name`. 
     here; ng - angular cli, new - new project, `project name`
     * Angular CLI starts, creates the project blueprint and the angular project will be created. 
+
+NgModule : Angular decorator. @NgModule : it represents, this class is component 
 
 Compilation process :
     ng serve -> angular CLI starts -> reads angular.json -> reads tsconfig.json -> reads main.ts -> angular compiler starts -> read all .ts files -> understands components -> processes angular templates -> compile ts to js -> bundle html, css -> creates optimised file -> development server starts -> browser downloads html, css, js -> browser executes js -> application appears. 
@@ -130,8 +139,30 @@ Project architecture :
         * It verifies the base configuration.
     
     7) tsconfig.app.json : Rules for the application
-    8) tsconfig.spec.json : Rules for testing
     
+    8) tsconfig.spec.json : Rules for testing
+
+    9) main.ts : 
+        * Its the entry point of the execution
+        * import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+        here; import - bring something from another module, platformBrowserDynamic - function provided by angular found in package.json,  platformBrowserDynamic() - function prepares the angular to run inside a browser
+        * import { AppModule } from "./app/app.module.ts";   
+        here; AppModule - root module of angular(not component, because angular app starts with module)
+        * platformBrowserDynamic().bootstrapmodule(AppModule) - Heart of angular
+        here, Bootstraping : Process of starting or initializing.
+        * AppModule - the file contains everything like, components, pipes, directives, alll. AppModule -> find app components -> create app components -> render html -> browser
+        * Execution flow : ng serve -> package.json -> angular.json -> tsconfig.json -> compile ts to js -> main.ts -> platformBrowserDynamic() -> prepares the browser -> AppModule -> App components -> HTML -> browser displays UI.
+
+    10) app.module.ts :
+        * Root module, it organizes an angular application's components, imported modules, providers, specifies bootstrap components.
+        * NgModule : Because its used to represent, that this class is component
+        * BrowserModule : Provides essential services and directives needed for an angular application running in a browser. An object, everything inside this would describe the application.
+        * NgModule is the decorator, that contains the registration meta data. It tells the angular which components, directives, providers, imports, bootstrap are belongs tot he module. 
+        * Declaration :[] -> what component, belongs to this module
+
+    11) app.component.ts : 
+        * 
+
 ------------------------------------------------------------------------------------------
 
 Data binding is the mechanism by which angular synchronizes data between the component and view. it allows data to flow from view to component, component to view or both, there are two different types;
