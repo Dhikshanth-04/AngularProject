@@ -39,4 +39,36 @@ string:string = "";
 get length(): number{
   return this.string.length;
 }
+
+StudentProfileTitle:string = "Student Profile Card";
+userName:string = "Dhikshanth";
+userAge: number = 22;
+userDepartment: string = "CSE";
+userCgpa: number = 4.5;
+userCollege: string = "Paavai engineering college"
+
+imageUrl:string = "assets/sideView.webp";
+altString: string = "Night king with dragon";
+
+
+arr: string[] =["SiiRii", "Dhiksh", "Arun"];
+
+students = [
+  {
+    name:"SiiRii",
+    age : 22
+  },
+  {
+    name:"Dhiksh",
+    age: 21
+  },
+  {
+    name:"Arun",
+    age: 21
+  }
+];
+
+status: string = "pending";
+isAdmin: boolean = true;
 }
+

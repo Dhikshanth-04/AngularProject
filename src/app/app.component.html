@@ -42,3 +42,45 @@
   <dt>vw</dt>
   <dd>Viewport width, relative unit represents the browser's window's width</dd>
 </dl>
+
+
+<h1>{{StudentProfileTitle}}</h1>
+<h3>Name : {{userName}}</h3>
+<h3>Age : {{userAge}}</h3>
+<h3>Department : {{userDepartment}}</h3>
+<h3>CGPA : {{userCgpa}}</h3>
+<h3>status : {{userCgpa > 5.0 ? "Pass" : "Fail"}}</h3>
+<h3>College : {{userCollege}}</h3>
+
+<img [src] = "imageUrl"; [alt] = "altString">
+
+<h2 *ngIf="userCgpa>5.5">
+  pass
+</h2>
+
+<div *ngIf="userCgpa>5.5; else fail">
+  candiate pass
+</div>
+<ng-template #fail>
+  candiate fail
+</ng-template>
+
+<h2 *ngFor="let i of arr">{{i}}</h2>
+
+<div *ngFor="let stud of students">
+  <h1>{{stud.name}}</h1>
+  <h2>{{stud.age}}</h2>
+</div>
+
+<div [ngSwitch]="status">
+  <p *ngSwitchCase="'pending'">Pending</p>
+
+  <p *ngSwitchCase="'success'">Sucess</p>
+
+  <p *ngSwitchCase="'failure'">Failure</p>
+
+</div>
+
+<button [ngClass]="isAdmin? 'adminBtn' : 'guestBtn'">
+  login
+</button>

@@ -72,10 +72,9 @@ Dependency tree : The series of dependencies linked to one to another.
 
 NgModule : Its the decorator object, which registers about the meta data. In this file, the components, imports, Declarations, providers and also specifies the bootstrap component will be mentioned, when the application starts.
 
-Components : These are smaller reusable parts of the User Interface(UI) by combining a typescript class, html template and css styles. Each component has one responsibility, this is called as Single Responsibility Principle. 
-
-
-
+Components :
+    * A component is the reusable UI unit, it contains; HTML template that defines structure, CSS stylesheet the defiens the apperance and a typescript class contains the business logic, at last @component decorator that provides metadate telling angular how these pieces are connected.  
+    * Each component has one responsibility, this is called as Single Responsibility Principle. 
 
 ------------------------------------------------------------------------------------------
 
@@ -161,17 +160,66 @@ Project architecture :
         * Declaration :[] -> what component, belongs to this module
 
     11) app.component.ts : 
-        * 
+        * Its the business logics, variables and wrokspace, 
+        * @component : it contains - selector, templateUrls, styleUrls and the type script class.
+        * selector : Its denotes a html tag that represents the component
+        * templateUrls : it relates the html file belongs to the component
+        * styleUrls : it relates the css file belongs to the component
+        * Its a decorator object, contains only information, business logics goes inside the class.
+    
+    12) app.component.html : It contains the html tags and display the UI
+
+    13) app.component.css : It contains the styles regarding to the component
+
+    14) index.html : Browser always starts executes the index.html, it contains something <app-root></app-root>, its the selector in component of app.component.ts, which has current html, css and typescript business logic. 
 
 ------------------------------------------------------------------------------------------
 
-Data binding is the mechanism by which angular synchronizes data between the component and view. it allows data to flow from view to component, component to view or both, there are two different types;
+Data binding is the mechanism by which angular synchronizes data between the component and template. it allows data to flow from template to component, component to template or both, there are two different types;
     1. One way binding
     2. Two way binding
 
 One way binding has 3 different methods;
-    * Interpolation => component - view => {{}}
-    * Property binding => component - view => []
-    * Event binding => view - component => ()
+    * Interpolation => component - template => {{}} - Reads and displays value
+    * Property binding => component - template => [] => bind data from component to html-element Property
+    * Event binding => template - component => ()
 
-Two way binding has only one method : ngModel => [(ngModel)]="name". The data would be passed from component - view and view - component. To use this model, we need to import the library of `FormsModule` 
+Two way binding has only one method : ngModel => [(ngModel)]="name". The data would be passed from component - template and template - component. To use this model, we need to import the library of `FormsModule` 
+
+Why data binding : To eliminate the manual dom manipulation, reduces repetitive code, improve maintainability and automatically synchronise the UI with the component data.
+
+Interpolation and this : Angular templates are evaluated in the context of current component instance. this is unnecessary and not allowed. 
+
+common properties in property binding : [disabled], [checked], [hidden], [colspan], [rowspan], [max], [min]
+
+Directives:
+    * Changes the behaviour or apperance of this html element automatically.
+    * Directives are the class in angular, which provies additional behaviour, structure or apperance to the DOM elements.
+    * Directives are angular code that works on HTML.
+    * NgIf, NgFor, NgSwitch - contains in @angular/common
+
+Component directive :
+    * A component is the special type of directive that has its own template.
+    * Component and directives act together to enhance the element
+    * Directives enhaces the existing element
+    * Component provides the whole template.
+
+structural directives : 
+    * These are the directives that add, remove, or manipulate the HTML elements, thereby changing the DOM tree.
+    * The (*) is the expansion of the <ng-template></ng-template>
+    * (*ngIf="conditon") : Only if the value, states true, the element will be created, else not created.
+    * It does not makes the visiblity as none, the node itself not created.
+
+ng-template : Its an angular template container, that is not rendered immediately. Angular creates and renders only if its necessary.
+
+*ngFor="" : 
+    * its a structural directive used to repeat the html element for every item in collection such as an array.
+
+    <h2 *ngFor="let i of arr">
+    {{i}}</h2>
+
+*ngSwitch="" :
+    * Its a structural directive, that selects one template from multiple possible templates based on the expression. 
+
+Attribute directives:
+    * This attributes changes the apperance or behaviour of the html element, without adding or removing it from the tree.
