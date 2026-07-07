@@ -1,0 +1,18 @@
+<p>product works!</p>
+<div *ngFor="let prod of product"> 
+    <p>Product Name : {{prod.productName}}</p>
+    <p>Price : {{prod.price | currency : 'INR'}}</p>
+    <p>Category : {{prod.category}}</p>
+    <p *ngIf="prod.stock > 0; else OutOfStock">Availablity : Available</p>
+    <ng-template #OutOfStock> Availablity : Out of stock</ng-template>
+    <p>Discount : {{prod.price | discount: 10}}</p>
+    <p>EMI Perioid : {{prod.price | emi}}</p>
+    <hr>
+</div>
+
+<div *ngFor="let n of name | keyvalue"> 
+    {{n.key}}
+    :
+    {{n.value}}
+</div>
+

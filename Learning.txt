@@ -243,3 +243,19 @@ Services :
 Dependency Injection : 
     * An object or the class that another class needs in order to perform its work.     
     * Dependency Injection is a design pattern where an object receives its required dependencies from an external provider instead of creating them itself. 
+
+Constructor injection : Its the process of receiving dependencies through the Constructors of the class. Angular injects the required services into components when creating the component. 
+
+service(business logic) -> Dependency(Object that othr class needs) -> Dependency injection(Angular provides the object) -> Constructor Injection(Providing the object through the Constructor).
+
+@Injectable({
+    providedIn : 'root';
+})
+here; 
+    * @Injectable is the decorator, says that this class is the service
+    * providedIn : 'root' -> Create a service for the entire application
+    * main.ts is the root of the app. 
+
+Import Vs Inject
+    * Import is just to tell class exist, does not creates or provides object. Used to use the class.
+    * Inject is the angular command, provides the instance of the class. Used to use the service object.

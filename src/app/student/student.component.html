@@ -1,0 +1,11 @@
+<div *ngFor="let stud of student">
+    <p>stud works!</p>
+    <p>Name : {{stud.name | uppercase }}</p>
+    <p>Age : {{stud.age}}</p>
+    <p>Department : {{stud.department}}</p>
+    <p>Arrear : {{stud.arrear}}</p>
+    <p>Age Status : {{stud.age>18 ? 'Major' : 'Minor'}}</p>
+    <p *ngIf="stud.age>18; else OutOfStock">Age category : Major</p>
+    <ng-template #OutOfStock> Age Category : Minor</ng-template>
+    <hr>
+</div>

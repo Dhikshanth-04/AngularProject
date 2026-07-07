@@ -4,10 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { StudentComponent } from './student/student.component';
+import { ProductComponent } from './product/product.component';
+import { DiscountPipe } from './CustomPipes/discount.pipe';
+import { EmiPipe } from './CustomPipes/emi.pipe';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StudentComponent,
+    ProductComponent,
+    DiscountPipe,
+    EmiPipe
   ],
   imports: [
     BrowserModule,
