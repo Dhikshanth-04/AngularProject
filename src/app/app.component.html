@@ -84,3 +84,16 @@
 <button [ngClass]="isAdmin? 'adminBtn' : 'guestBtn'">
   login
 </button>
+
+<h2 [ngClass]="{
+  pass: userCgpa >= 5,
+  fail : userCgpa < 5
+}">
+{{userCgpa}}
+</h2>
+
+<h3 [ngClass]="['btn', 'round', 'border']">Array ngClass</h3>
+
+<h3 [ngStyle]="{
+  'color' : userCgpa>5 ? 'green' : 'red' 
+}">{{userCgpa}}</h3>

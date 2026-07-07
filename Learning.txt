@@ -192,6 +192,9 @@ Interpolation and this : Angular templates are evaluated in the context of curre
 
 common properties in property binding : [disabled], [checked], [hidden], [colspan], [rowspan], [max], [min]
 
+Two way binding : 
+    * Two way binding synchronises data automatically between the components and view. Any change in view updates components and changes in components updates view. 
+
 Directives:
     * Changes the behaviour or apperance of this html element automatically.
     * Directives are the class in angular, which provies additional behaviour, structure or apperance to the DOM elements.
@@ -223,3 +226,20 @@ ng-template : Its an angular template container, that is not rendered immediatel
 
 Attribute directives:
     * This attributes changes the apperance or behaviour of the html element, without adding or removing it from the tree.
+
+ngClass : Its an attribute directive, in which the css classes will be added or removes based on angular expressions. 
+
+ngStyle : Its an attribute directive, that dynamically applies one or more inline css to the existing HTML based on angular expression.
+
+Services : 
+    * A servies is a typescript class that contains the business logic, data access, API calls, and shared functionality that can be used by mulitple components created by using @Injectable. 
+
+    * Component coordinates the UI and the services does the work.
+
+    * Services are purely the typescript functions, no HTML no CSS.
+
+    * Its used to separate the business logics from UI, Reduces the code duplication, Improve code maintainability and reusablity
+
+Dependency Injection : 
+    * An object or the class that another class needs in order to perform its work.     
+    * Dependency Injection is a design pattern where an object receives its required dependencies from an external provider instead of creating them itself. 

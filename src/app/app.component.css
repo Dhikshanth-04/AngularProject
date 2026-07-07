@@ -1,0 +1,16 @@
+.pass{
+    color:green;
+}
+.fail{
+    color:red;
+}
+
+.btn{
+    color: blue;
+}
+.round{
+    border-radius: 20px;
+}
+.border{
+    border: 2px solid violet;
+}
