@@ -76,7 +76,7 @@ Components :
     * A component is the reusable UI unit, it contains; HTML template that defines structure, CSS stylesheet the defiens the apperance and a typescript class contains the business logic, at last @component decorator that provides metadate telling angular how these pieces are connected.  
     * Each component has one responsibility, this is called as Single Responsibility Principle. 
 
-------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
 
 Angular CLI : 
     * Command Line Interface. Instead of clicking the buttons, we communicate through commands with software.
@@ -259,3 +259,9 @@ here;
 Import Vs Inject
     * Import is just to tell class exist, does not creates or provides object. Used to use the class.
     * Inject is the angular command, provides the instance of the class. Used to use the service object.
+
+Pipe : 
+    * Its an angular feature used to transform or format data in the template before displaying it to the user without modifying the original data.  
+    * It has different types like; uppercase, lowercase, percent, currency, json, key-value pair, async too.
+
+Custom pipes : These are the user defined pipes created to transform the data, according to the application requirements. These pipes are used, when the built-in types are not satisfied. 

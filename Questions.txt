@@ -1,0 +1,983 @@
+====================================================
+ANGULAR INTERVIEW & PRACTICE QUESTIONS
+====================================================
+
+----------------------------------------------------
+1. ANGULAR FOUNDATION
+----------------------------------------------------
+
+====================================================
+ANGULAR FOUNDATION - 50 INTERVIEW QUESTIONS
+====================================================
+
+1. What is Angular?
+
+2. Why was Angular created?
+
+3. What problems does Angular solve?
+
+4. Why is Angular called a framework instead of a library?
+
+5. What are the main features of Angular?
+
+6. Explain the architecture of Angular.
+
+7. What is a Single Page Application (SPA)?
+
+8. Why does Angular use the SPA architecture?
+
+9. What is the difference between AngularJS and Angular?
+
+10. Why does Angular use TypeScript instead of JavaScript?
+
+11. What are the advantages of using Angular?
+
+12. What are the disadvantages of Angular?
+
+13. Explain the Angular application workflow.
+
+14. What is bootstrapping in Angular?
+
+15. Which file bootstraps an Angular application?
+
+16. What is the purpose of the main.ts file?
+
+17. What is the purpose of the index.html file?
+
+18. What is the purpose of the app.component.ts file?
+
+19. What is the purpose of the app.component.html file?
+
+20. What is the purpose of the app.component.css file?
+
+21. What is the purpose of the app.component.spec.ts file?
+
+22. Explain the complete Angular project folder structure.
+
+23. What is the src folder?
+
+24. What is the assets folder?
+
+25. What is the environments folder?
+
+26. What is angular.json?
+
+27. What is package.json?
+
+28. What is package-lock.json?
+
+29. What is tsconfig.json?
+
+30. What is node_modules?
+
+31. Why should node_modules not be uploaded to GitHub?
+
+32. What happens internally when we execute the 'ng new' command?
+
+33. What happens internally when we execute the 'ng serve' command?
+
+34. What happens internally when we execute the 'ng build' command?
+
+35. What is Angular CLI?
+
+36. What are the advantages of Angular CLI?
+
+37. Explain some commonly used Angular CLI commands.
+
+38. What is Ahead-of-Time (AOT) compilation?
+
+39. What is Just-in-Time (JIT) compilation?
+
+40. What is the difference between AOT and JIT compilation?
+
+41. What is change detection in Angular?
+
+42. What is Zone.js and why is it used in Angular?
+
+43. What is the Angular compiler?
+
+44. How does Angular render a webpage?
+
+45. What are standalone components, and why were they introduced?
+
+46. Why is Angular suitable for enterprise-level applications?
+
+47. If you were asked to explain Angular to a beginner in an interview, how would you explain it?
+
+----------------------------------------------------
+2. COMPONENTS
+----------------------------------------------------
+
+====================================================
+ANGULAR COMPONENTS - 50 INTERVIEW QUESTIONS
+====================================================
+
+1. What is a Component in Angular?
+
+2. Why are components used in Angular?
+
+3. What are the responsibilities of a component?
+
+4. Explain the Component-Based Architecture in Angular.
+
+5. What is the difference between a Component and a Module?
+
+6. What is the difference between a Component and a normal TypeScript class?
+
+7. What is the @Component() decorator?
+
+8. Why is the @Component() decorator required?
+
+9. Explain each property of the @Component() decorator.
+
+10. What is the purpose of the selector property?
+
+11. What is the purpose of templateUrl?
+
+12. What is the difference between template and templateUrl?
+
+13. What is the purpose of styleUrls?
+
+14. What is the difference between styles and styleUrls?
+
+15. How does Angular identify a component?
+
+16. What happens if two components have the same selector?
+
+17. How does Angular know which component should be loaded first?
+
+18. What is the root component of an Angular application?
+
+19. Can an Angular application have multiple components?
+
+20. Can one component be used inside another component?
+
+21. How do you create a component using Angular CLI?
+
+22. What files are generated when a new component is created?
+
+23. Explain the purpose of each generated component file.
+
+24. What happens internally when we execute:
+    ng generate component component-name
+
+25. Can a component exist without an HTML file?
+
+26. Can a component exist without a CSS file?
+
+27. Can a component have inline HTML?
+
+28. Can a component have inline CSS?
+
+29. What is component encapsulation?
+
+30. What is View Encapsulation in Angular?
+
+32. What is the default View Encapsulation used by Angular?
+
+33. What is the difference between global styles and component styles?
+
+34. Why should business logic not be written inside a component?
+
+35. What type of logic should be written inside a component?
+
+36. How do components interact with services?
+
+37. What is component reusability?
+
+38. What are the advantages of reusable components?
+
+39. What are standalone components?
+
+40. Why were standalone components introduced?
+
+41. What is the difference between standalone components and module-based components?
+
+42. Can standalone and module-based components exist in the same application?
+
+43. What are the advantages of component-based development?
+
+44. Explain the lifecycle of a component from creation to destruction.
+
+45. What are some best practices for designing Angular components?
+
+46. Design an Employee Management application using multiple components. Explain which components you would create and how they would communicate with each other.
+
+----------------------------------------------------
+3. DIRECTIVES
+----------------------------------------------------
+
+====================================================
+ANGULAR DIRECTIVES - 50 INTERVIEW QUESTIONS
+====================================================
+
+1. What is a Directive in Angular?
+
+2. Why are Directives used in Angular?
+
+3. What is the purpose of Directives?
+
+4. What is the difference between a Component and a Directive?
+
+5. What are the different types of Directives in Angular?
+
+6. Explain Structural Directives.
+
+7. Explain Attribute Directives.
+
+8. What are Custom Directives?
+
+9. What is the difference between Structural Directives and Attribute Directives?
+
+10. Why are Components called a special type of Directive?
+
+11. What is *ngIf?
+
+12. How does *ngIf work internally?
+
+13. What is the difference between *ngIf and the HTML hidden attribute?
+
+14. What is *ngFor?
+
+15. How does *ngFor work internally?
+
+16. What is the difference between *ngFor and a JavaScript for loop?
+
+17. Explain the syntax of *ngFor.
+
+18. What is the purpose of 'let' inside *ngFor?
+
+19. What is the index variable in *ngFor?
+
+20. What are the built-in local variables available in *ngFor?
+    (index, first, last, even, odd, count)
+
+21. What is ngSwitch?
+
+22. Explain ngSwitchCase.
+
+23. Explain ngSwitchDefault.
+
+24. What is the difference between *ngIf and ngSwitch?
+
+25. Why can't we use two Structural Directives on the same HTML element?
+
+26. How can we use multiple Structural Directives together?
+
+27. What is ngClass?
+
+28. Why do we use ngClass?
+
+29. Explain the different ways to use ngClass.
+
+30. What is the difference between ngClass and the HTML class attribute?
+
+31. What is ngStyle?
+
+32. Why do we use ngStyle?
+
+33. Explain the different ways to use ngStyle.
+
+34. What is the difference between ngStyle and the HTML style attribute?
+
+35. What is property binding in directives?
+
+36. How are directives evaluated during Angular's change detection?
+
+37. What is a Custom Directive?
+
+38. Why do we create Custom Directives?
+
+39. How do you create a Custom Directive using Angular CLI?
+
+40. What files are generated when creating a Custom Directive?
+
+41. Explain the @Directive() decorator.
+
+42. What is the selector property inside the @Directive() decorator?
+
+43. How do you apply a Custom Directive to an HTML element?
+
+44. What is ElementRef in Angular Directives?
+
+45. Explain a real-world example of a Custom Directive.
+
+46. What are the best practices for creating Angular Directives?
+
+47. Design a Custom Directive that highlights an input field in green when it gains focus and returns it to its original color when it loses focus. Explain your approach.
+
+----------------------------------------------------
+4. SERVICES
+----------------------------------------------------
+
+====================================================
+ANGULAR SERVICES - 50 INTERVIEW QUESTIONS
+====================================================
+
+1. What is a Service in Angular?
+
+2. Why are Services used in Angular?
+
+3. What problems do Services solve?
+
+4. What is the difference between a Component and a Service?
+
+5. What kind of logic should be written inside a Service?
+
+6. Why should business logic not be written inside a Component?
+
+7. What are the advantages of using Services?
+
+8. What is the Single Responsibility Principle (SRP), and how do Services support it?
+
+9. What is code reusability, and how do Services improve it?
+
+10. Can multiple Components use the same Service?
+
+11. How do Components communicate with Services?
+
+12. What is the @Injectable() decorator?
+
+13. Why is the @Injectable() decorator required?
+
+14. Explain each property of the @Injectable() decorator.
+
+15. What does 'providedIn: root' mean?
+
+16. How do you create a Service using Angular CLI?
+
+17. What files are generated when creating a Service?
+
+18. Explain the structure of a Service file.
+
+19. How do you inject a Service into a Component?
+
+20. Explain the complete flow of calling a Service method from a Component.
+
+21. Can a Service exist without the @Injectable() decorator?
+
+22. What happens if a Service is not registered with Angular's Dependency Injection system?
+
+23. What is a singleton Service?
+
+24. Why are Services singleton by default?
+
+25. What happens when multiple Components inject the same Service?
+
+27. Explain a real-world example of sharing data using a Service.
+
+30. What is Constructor Injection in Services?
+
+38. How do Services help in maintaining clean architecture?
+
+39. How do Services improve application scalability?
+
+40. How do Services improve application maintainability?
+
+41. Can a Service maintain application state? Explain with an example.
+
+====================================================
+ANGULAR - DEPENDENCY INJECTION & CONSTRUCTOR INJECTION
+INTERVIEW QUESTIONS (1-15)
+====================================================
+
+1. What is a Service in Angular?
+Answer:
+A Service is a TypeScript class that contains reusable business logic, data manipulation, or API-related code. It allows multiple components to share the same functionality without duplicating code.
+
+----------------------------------------------------
+
+2. Why do we use Services?
+Answer:
+Services are used to separate business logic from the user interface and make code reusable. They improve maintainability, scalability, and code organization.
+
+----------------------------------------------------
+
+3. What problems do Services solve?
+Answer:
+Services eliminate duplicate code by centralizing common functionality. They also make it easier to share data and communicate with backend APIs.
+
+----------------------------------------------------
+
+4. Can a Service contain HTML or CSS?
+Answer:
+No. A Service only contains TypeScript code and does not have HTML or CSS files. Its purpose is to handle business logic rather than the user interface.
+
+----------------------------------------------------
+
+5. What type of file is a Service?
+Answer:
+A Service is a TypeScript (.ts) file decorated with the @Injectable() decorator. It contains methods, properties, and reusable logic for the application.
+
+----------------------------------------------------
+
+6. What kind of code is usually written inside a Service?
+Answer:
+Services typically contain business logic, API calls, data manipulation, authentication, validation, logging, and shared application state. They keep components focused on the UI.
+
+----------------------------------------------------
+
+7. Can multiple Components use the same Service?
+Answer:
+Yes. Multiple components can inject and use the same Service instance. By default, Angular creates a singleton Service when it is provided in the root injector.
+
+----------------------------------------------------
+
+8. Why shouldn't we write business logic inside Components?
+Answer:
+Components should focus only on displaying data and handling user interactions. Keeping business logic in Services makes the application cleaner and easier to maintain.
+
+----------------------------------------------------
+
+9. Where is a Service usually created?
+Answer:
+A Service is usually generated using the Angular CLI with the command:
+ng generate service service-name
+Angular creates it inside the application's service folder or the specified location.
+
+----------------------------------------------------
+
+10. What is the purpose of the @Injectable() decorator?
+Answer:
+The @Injectable() decorator tells Angular that the class can participate in the Dependency Injection system. It allows Angular to create and inject the Service wherever it is needed.
+
+----------------------------------------------------
+
+11. What is Dependency Injection (DI)?
+Answer:
+Dependency Injection is a design pattern where Angular automatically provides the required objects to a class instead of the class creating them itself. This promotes loose coupling and code reusability.
+
+----------------------------------------------------
+
+12. Why was Dependency Injection introduced?
+Answer:
+Dependency Injection was introduced to reduce tight coupling between classes and simplify object management. It makes applications easier to test, maintain, and extend.
+
+----------------------------------------------------
+
+13. What is meant by "Dependency" in Angular?
+Answer:
+A dependency is any object or service that a class needs to perform its work. For example, if a component requires ProductService, then ProductService is its dependency.
+
+----------------------------------------------------
+
+14. Who creates the Service object in Dependency Injection?
+Answer:
+Angular's Dependency Injection system creates and manages the Service object. Developers only request the Service, while Angular handles its creation and lifecycle.
+
+----------------------------------------------------
+
+15. Does the Component create the Service object?
+Answer:
+No. Components never create Service objects directly. They simply declare their dependency in the constructor, and Angular injects the appropriate Service instance.
+
+====================================================
+ANGULAR - DEPENDENCY INJECTION & CONSTRUCTOR INJECTION
+INTERVIEW QUESTIONS (16-30)
+====================================================
+
+16. What happens if we create a Service using new ProductService()?
+Answer:
+If we create a Service using the new keyword, Angular's Dependency Injection system is bypassed. This creates a separate object, prevents singleton behavior, and Angular cannot inject any dependencies required by that Service.
+
+----------------------------------------------------
+
+17. What are the advantages of Dependency Injection?
+Answer:
+Dependency Injection promotes loose coupling, improves code reusability, simplifies testing, and allows Angular to manage object creation automatically. It also makes applications more scalable and maintainable.
+
+----------------------------------------------------
+
+18. How does Angular know which Service to inject?
+Answer:
+Angular reads the constructor parameter type and searches its Dependency Injection system for a matching Service. If the Service is registered, Angular creates or reuses an existing instance and injects it.
+
+----------------------------------------------------
+
+19. What does providedIn: 'root' mean?
+Answer:
+The property providedIn: 'root' registers the Service with Angular's Root Injector. Angular creates a single shared instance (singleton) that is available throughout the entire application.
+
+----------------------------------------------------
+
+20. Why are Services singleton by default?
+Answer:
+Singleton Services reduce memory usage by creating only one instance for the application. This allows multiple components to share the same data and maintain a consistent application state.
+
+----------------------------------------------------
+
+21. What is Constructor Injection?
+Answer:
+Constructor Injection is the process of receiving dependencies through a class constructor. Angular automatically injects the required Services when it creates the component or another Service.
+
+----------------------------------------------------
+
+22. Why does Angular use the constructor to inject Services?
+Answer:
+The constructor is executed automatically when an object is created, making it the ideal place to provide dependencies. This ensures that required Services are available before the component starts executing its logic.
+
+----------------------------------------------------
+
+23. When is the constructor executed?
+Answer:
+The constructor executes immediately when Angular creates an instance of a component, directive, pipe, or service. It runs before lifecycle hooks such as ngOnInit().
+
+----------------------------------------------------
+
+24. Explain the following code:
+    constructor(private productService: ProductService)
+
+Answer:
+The constructor requests an instance of ProductService from Angular's Dependency Injection system. The private keyword creates a private class property and automatically stores the injected Service for use throughout the component.
+
+----------------------------------------------------
+
+25. What does the keyword 'private' mean in constructor injection?
+Answer:
+The private keyword creates a private member variable and automatically assigns the injected Service to it. This eliminates the need to declare the variable separately inside the class.
+
+Example:
+
+Without shorthand:
+
+private productService: ProductService;
+
+constructor(productService: ProductService) {
+    this.productService = productService;
+}
+
+With shorthand:
+
+constructor(private productService: ProductService) {}
+
+----------------------------------------------------
+
+26. Can we inject multiple Services into one constructor?
+Answer:
+Yes. Angular allows multiple Services to be injected by adding them as constructor parameters. Angular automatically resolves and injects each required dependency.
+
+Example:
+
+constructor(
+    private productService: ProductService,
+    private userService: UserService,
+    private authService: AuthService
+) {}
+
+----------------------------------------------------
+
+27. What happens if the constructor has no parameters?
+Answer:
+If the constructor has no parameters, Angular simply creates the component without injecting any dependencies. The component will function normally unless it requires external Services.
+
+----------------------------------------------------
+
+28. Can we call Service methods outside the constructor?
+Answer:
+Yes. The constructor is only used to receive the Service object. Once injected, the Service can be used inside any method, lifecycle hook, or event handler within the component.
+
+Example:
+
+ngOnInit() {
+    this.productService.getProducts();
+}
+
+----------------------------------------------------
+
+29. Why don't we write new ProductService() inside the constructor?
+Answer:
+Using new ProductService() creates a separate object outside Angular's Dependency Injection system. This breaks singleton behavior, reduces maintainability, and prevents Angular from managing the Service and its own dependencies.
+
+----------------------------------------------------
+
+30. What happens internally when Angular executes Constructor Injection?
+Answer:
+When Angular creates a component, it examines the constructor parameters, searches the Injector for each required dependency, creates the Service if necessary, and injects the appropriate instance into the constructor before the component begins execution.
+
+Internal Flow:
+
+Component Creation
+        ↓
+Angular reads constructor parameters
+        ↓
+Injector searches for ProductService
+        ↓
+Service found (or created)
+        ↓
+Angular injects ProductService
+        ↓
+Constructor executes
+        ↓
+Component starts using the Service
+
+====================================================
+ANGULAR - DEPENDENCY INJECTION & CONSTRUCTOR INJECTION
+INTERVIEW QUESTIONS (31-50)
+====================================================
+
+31. What are some real-world uses of Services?
+Answer:
+Services are commonly used for authentication, API calls, data sharing, logging, form validation, notifications, and managing application state. They centralize reusable business logic.
+
+----------------------------------------------------
+
+32. Why are API calls usually written inside Services?
+Answer:
+API calls are placed inside Services to separate business logic from the UI. This makes the code reusable, easier to test, and simpler to maintain.
+
+----------------------------------------------------
+
+33. What is HttpClient, and why is it commonly used inside Services?
+Answer:
+HttpClient is Angular's built-in module for communicating with backend APIs. It is typically used inside Services to fetch, send, update, and delete data.
+
+----------------------------------------------------
+
+34. What methods might you find inside a ProductService?
+Answer:
+A ProductService usually contains methods such as getProducts(), getProductById(), addProduct(), updateProduct(), and deleteProduct(). These methods manage all product-related operations.
+
+----------------------------------------------------
+
+35. Why should Components not directly modify data?
+Answer:
+Components should focus on displaying data and handling user interactions. Keeping data manipulation inside Services follows the Single Responsibility Principle and improves maintainability.
+
+----------------------------------------------------
+
+36. What is the Single Responsibility Principle (SRP), and how do Services support it?
+Answer:
+The Single Responsibility Principle states that a class should have only one responsibility. Services handle business logic, while Components handle the user interface.
+
+----------------------------------------------------
+
+37. Why do we say Services are reusable?
+Answer:
+A single Service can be injected into multiple Components, Directives, or other Services. This avoids writing the same logic multiple times.
+
+----------------------------------------------------
+
+38. How do Services help reduce duplicate code?
+Answer:
+Instead of implementing the same logic in different Components, the logic is written once inside a Service and reused wherever required.
+
+----------------------------------------------------
+
+39. Can one Service call another Service?
+Answer:
+Yes. A Service can inject another Service through its constructor using Dependency Injection. This is common in large applications where Services collaborate.
+
+Example:
+
+constructor(private authService: AuthService) {}
+
+----------------------------------------------------
+
+40. What is meant by Separation of Concerns in Angular?
+Answer:
+Separation of Concerns means dividing an application into independent parts, each with a specific responsibility. Components manage the UI, while Services manage business logic and data.
+
+----------------------------------------------------
+
+41. You have three Components that need the same product list. How would you design your application?
+Answer:
+I would create a ProductService to store and manage the product list. All three Components would inject the same ProductService, ensuring they share the same data.
+
+Architecture:
+
+ProductService
+      ↑
+ProductComponent
+CartComponent
+WishlistComponent
+
+----------------------------------------------------
+
+42. If the backend API changes tomorrow, which file should you modify?
+Answer:
+Only the Service file should be modified because all API communication is centralized there. The Components can continue calling the same Service methods without any changes.
+
+----------------------------------------------------
+
+43. Suppose you have a StudentService. Which methods would you create inside it?
+Answer:
+Typical methods include:
+• getStudents()
+• getStudentById()
+• addStudent()
+• updateStudent()
+• deleteStudent()
+• searchStudents()
+
+These methods encapsulate all student-related business logic.
+
+----------------------------------------------------
+
+44. Why is storing data inside a Service better than storing it inside multiple Components?
+Answer:
+A shared Service maintains a single source of truth for the data. This keeps all Components synchronized and prevents inconsistencies caused by duplicate data.
+
+----------------------------------------------------
+
+45. Explain the complete execution flow when a Component displays products using a Service.
+Answer:
+The Component requests ProductService through constructor injection. The Service retrieves the product data (from memory or an API), returns it to the Component, and the Component displays it in the UI.
+
+Flow:
+
+Component Created
+        ↓
+Angular injects ProductService
+        ↓
+Component calls getProducts()
+        ↓
+ProductService fetches data
+        ↓
+Data returned to Component
+        ↓
+Component updates the UI
+
+----------------------------------------------------
+
+46. How does Dependency Injection improve application performance?
+Answer:
+Dependency Injection avoids creating unnecessary Service objects by reusing singleton instances. This reduces memory consumption and improves application efficiency.
+
+----------------------------------------------------
+
+47. What happens if two Components inject the same Service?
+Answer:
+If the Service is provided in the Root Injector, both Components receive the same Service instance. Any data changes made by one Component are immediately available to the other.
+
+----------------------------------------------------
+
+48. Explain the relationship between:
+    - Service
+    - Dependency Injection
+    - Constructor Injection
+
+Answer:
+A Service contains reusable business logic. Dependency Injection is the mechanism Angular uses to provide the Service, and Constructor Injection is the technique used to receive the Service inside a Component or another Service.
+
+Relationship:
+
+Service
+      ↓
+Registered with Angular
+      ↓
+Dependency Injection System
+      ↓
+Constructor Injection
+      ↓
+Component Uses Service
+
+----------------------------------------------------
+
+49. Draw or explain the execution flow from:
+    Component → Service → Data → UI
+
+Answer:
+
+Component Created
+        ↓
+Component calls Service Method
+        ↓
+Service processes data or calls API
+        ↓
+Service returns data
+        ↓
+Component stores received data
+        ↓
+Angular updates the View (UI)
+
+This flow keeps Components lightweight and delegates all business logic to Services.
+
+----------------------------------------------------
+
+50. Explain the complete lifecycle from the moment Angular creates a Component until the Service method is executed.
+
+Answer:
+When Angular creates a Component, it first executes the constructor and checks its dependencies. The Injector provides the required Service, after which lifecycle hooks such as ngOnInit() execute. The Component then calls the Service method, receives the data, and Angular updates the UI through change detection.
+
+Complete Flow:
+
+Application Starts
+        ↓
+Angular Creates Component
+        ↓
+Constructor Executes
+        ↓
+Injector Resolves Dependencies
+        ↓
+Service Instance Injected
+        ↓
+ngOnInit() Executes
+        ↓
+Component Calls Service Method
+        ↓
+Service Executes Business Logic / API Call
+        ↓
+Data Returned to Component
+        ↓
+Angular Change Detection Runs
+        ↓
+UI Updated
+
+====================================================
+ANGULAR PIPES - 50 INTERVIEW QUESTIONS
+(With 2-Line Answers)
+====================================================
+
+1. What is a Pipe in Angular?
+Answer: A Pipe is used to transform data before displaying it in the UI. It changes only the presentation of data, not the original value.
+
+2. Why do we use Pipes?
+Answer: Pipes improve readability by formatting data like dates, currency, text, and percentages directly in the template.
+
+3. What problem do Pipes solve?
+Answer: They avoid writing formatting logic inside components and keep templates clean.
+
+4. How do Pipes work internally?
+Answer: Angular passes data to the pipe's transform() method and displays the transformed result.
+
+5. What is the syntax of a Pipe?
+Answer: Pipes use the (|) operator.
+Example: {{ salary | currency }}
+
+6. What is the difference between a Pipe and a normal TypeScript function?
+Answer: Pipes are template-based and reusable, while functions are written in components and execute during every change detection cycle.
+
+7. What are the advantages of using Pipes?
+Answer: Pipes improve code reusability, readability, maintainability, and separation of concerns.
+
+8. Can multiple Pipes be used together?
+Answer: Yes. This is called Pipe Chaining, where the output of one pipe becomes the input of another.
+
+9. What is Pipe Chaining?
+Answer: Applying multiple pipes to the same value.
+Example: {{ name | uppercase | slice:0:5 }}
+
+10. Can Pipes accept parameters?
+Answer: Yes. Parameters are passed after a colon (:).
+Example: {{ amount | currency:'INR' }}
+
+11. What are Built-in Pipes?
+Answer: These are pipes provided by Angular such as DatePipe, CurrencyPipe, DecimalPipe, etc.
+
+12. Name some Built-in Pipes.
+Answer: DatePipe, CurrencyPipe, DecimalPipe, PercentPipe, SlicePipe, JsonPipe, AsyncPipe, UpperCasePipe, LowerCasePipe, TitleCasePipe.
+
+13. What is UpperCasePipe?
+Answer: Converts text into uppercase letters.
+
+14. What is LowerCasePipe?
+Answer: Converts text into lowercase letters.
+
+15. What is TitleCasePipe?
+Answer: Converts the first letter of every word into uppercase.
+
+16. What is DatePipe?
+Answer: Formats dates into different display formats such as short, medium, long, or custom formats.
+
+17. What is CurrencyPipe?
+Answer: Formats numeric values into different currencies.
+
+18. What is DecimalPipe?
+Answer: Formats decimal numbers by controlling integer and fractional digits.
+
+19. What is PercentPipe?
+Answer: Converts decimal values into percentage format.
+
+20. What is SlicePipe?
+Answer: Returns a portion of a string or array, similar to JavaScript's slice() method.
+
+21. What is JsonPipe?
+Answer: Converts JavaScript objects into JSON format for debugging.
+
+22. Why is JsonPipe mostly used during development?
+Answer: It helps developers inspect object data easily inside templates.
+
+23. What is KeyValuePipe?
+Answer: Converts an object or Map into key-value pairs for iteration.
+
+24. What is AsyncPipe?
+Answer: It automatically subscribes to Observables or Promises and unsubscribes when the component is destroyed.
+
+25. Why is AsyncPipe important?
+Answer: It prevents memory leaks by automatically managing subscriptions.
+
+26. What is a Custom Pipe?
+Answer: A pipe created by developers to perform application-specific data transformations.
+
+27. Why do we create Custom Pipes?
+Answer: To reuse custom formatting logic across multiple components.
+
+28. How do you create a Custom Pipe?
+Answer: Using Angular CLI:
+ng generate pipe pipe-name
+
+29. What is the @Pipe() decorator?
+Answer: It tells Angular that the class is a Pipe and provides metadata like the pipe name.
+
+30. What is the transform() method?
+Answer: It is the main method of every pipe where the transformation logic is written.
+
+31. Can a Custom Pipe accept parameters?
+Answer: Yes. Parameters can be passed to transform() after the value.
+
+32. What is the difference between Built-in Pipes and Custom Pipes?
+Answer: Built-in pipes are provided by Angular, whereas custom pipes are created by developers.
+
+33. What is a Pure Pipe?
+Answer: A Pure Pipe executes only when the input reference changes.
+
+34. What is an Impure Pipe?
+Answer: An Impure Pipe executes during every change detection cycle.
+
+35. What is the default type of Pipe?
+Answer: All Angular pipes are Pure by default.
+
+36. When should you use an Impure Pipe?
+Answer: When data changes without changing its object reference.
+
+37. What are the disadvantages of Impure Pipes?
+Answer: They execute frequently and can reduce application performance.
+
+38. How do Pipes affect Change Detection?
+Answer: Pure pipes reduce unnecessary executions, while impure pipes run during every change detection cycle.
+
+39. Can Pipes improve application performance?
+Answer: Yes. Pure Pipes avoid repeated computations and improve rendering efficiency.
+
+40. What are the best practices for creating Custom Pipes?
+Answer: Keep them simple, reusable, and avoid complex business logic.
+
+41. What is the difference between a Pipe and a Directive?
+Answer: Pipes transform displayed data, whereas Directives modify the behavior or appearance of DOM elements.
+
+42. What is the difference between a Pipe and a Function?
+Answer: Pipes are optimized by Angular and are reusable in templates, whereas functions are executed frequently during change detection.
+
+43. What is the difference between Pure Pipe and Impure Pipe?
+Answer: Pure Pipes execute only when inputs change; Impure Pipes execute on every change detection cycle.
+
+44. What is the difference between DatePipe and JavaScript Date methods?
+Answer: DatePipe formats dates directly in templates, whereas JavaScript Date methods are used inside TypeScript code.
+
+45. What is the difference between CurrencyPipe and manual number formatting?
+Answer: CurrencyPipe automatically formats currency according to locale, while manual formatting requires custom code.
+
+46. What is the difference between JsonPipe and JSON.stringify()?
+Answer: JsonPipe is used in Angular templates, whereas JSON.stringify() is a JavaScript method used in TypeScript.
+
+47. What is the difference between AsyncPipe and manual subscription?
+Answer: AsyncPipe automatically subscribes and unsubscribes, whereas manual subscription requires explicit cleanup.
+
+48. What is the difference between SlicePipe and JavaScript slice()?
+Answer: SlicePipe is used inside Angular templates, while slice() is a JavaScript method used in TypeScript.
+
+49. What is the difference between Pipe Chaining and Nested Function Calls?
+Answer: Pipe chaining is cleaner and more readable in templates, whereas nested functions reduce readability.
+
+50. Explain a real-world application where multiple Built-in and Custom Pipes are used together.
+Answer: An Employee Management System may use DatePipe for joining dates, CurrencyPipe for salaries, UpperCasePipe for names, and a Custom Pipe to display employee status.

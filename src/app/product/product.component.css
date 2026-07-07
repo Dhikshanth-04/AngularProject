@@ -1,0 +1,14 @@
+.available{
+    color : green;
+}
+.notAvailable{
+    color : red;
+}
+.notAfford{
+    border: 2px solid black;
+    color: red;
+}
+.afford{
+    border: 3px solid green;
+    color : orange;
+}

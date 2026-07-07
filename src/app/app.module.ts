@@ -8,6 +8,7 @@ import { StudentComponent } from './student/student.component';
 import { ProductComponent } from './product/product.component';
 import { DiscountPipe } from './CustomPipes/discount.pipe';
 import { EmiPipe } from './CustomPipes/emi.pipe';
+import { AltCharCapPipe } from './CustomPipes/alt-char-cap.pipe';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { EmiPipe } from './CustomPipes/emi.pipe';
     StudentComponent,
     ProductComponent,
     DiscountPipe,
-    EmiPipe
+    EmiPipe,
+    AltCharCapPipe
   ],
   imports: [
     BrowserModule,

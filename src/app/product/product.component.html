@@ -3,10 +3,10 @@
     <p>Product Name : {{prod.productName}}</p>
     <p>Price : {{prod.price | currency : 'INR'}}</p>
     <p>Category : {{prod.category}}</p>
-    <p *ngIf="prod.stock > 0; else OutOfStock">Availablity : Available</p>
-    <ng-template #OutOfStock> Availablity : Out of stock</ng-template>
+    <p *ngIf="prod.stock > 0; else OutOfStock" [ngStyle]="{'color' : 'red'}">Availablity : Available</p>
+    <ng-template #OutOfStock><p style="color : green" >Availablity : Out of stock</p></ng-template>
     <p>Discount : {{prod.price | discount: 10}}</p>
-    <p>EMI Perioid : {{prod.price | emi}}</p>
+    <p>EMI Period : {{prod.price | emi}}</p>
     <hr>
 </div>
 
@@ -15,4 +15,14 @@
     :
     {{n.value}}
 </div>
+<hr>
 
+<div *ngFor="let prod of product"> 
+    <p>Product name : {{prod.productName | altCharCap}}</p>
+    <p [ngClass]="[prod.price>20000 ? 'notAfford' : 'afford']">Price :{{prod.price}} </p>
+    <p> Category : {{prod.category}}</p>
+    <p [ngStyle]="{color: prod.price>2000? 'green' : 'red'}"> Price : {{prod.price}}</p>
+    <p>Discount : {{prod.price | discount: 10}}</p>
+    <p>EMI Period : {{prod.price | emi}}</p>
+    <hr>
+</div>
