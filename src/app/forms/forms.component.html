@@ -1,0 +1,242 @@
+<form [formGroup]="myForm">
+
+    <fieldset style="width: fit-content;">
+        <legend>Personal Form</legend>
+
+        <table>
+
+            <!-- Name -->
+
+            <tr>
+                <td><label for="name">Enter Name :</label></td>
+                <td><input type="text" id="name" formControlName="name"></td>
+            </tr>
+
+            <ng-container *ngIf="name?.invalid && name?.touched">
+
+                <tr *ngIf="name?.hasError('required')">
+                    <td colspan="2" style="color:red;">Name is mandatory</td>
+                </tr>
+
+                <tr *ngIf="name?.hasError('minlength')">
+                    <td colspan="2" style="color:red;">Minimum length is 5 characters</td>
+                </tr>
+
+            </ng-container>
+
+            <!-- Age -->
+
+            <tr>
+                <td><label for="age">Enter Age :</label></td>
+                <td><input type="number" id="age" formControlName="age"></td>
+            </tr>
+
+            <ng-container *ngIf="age?.invalid && age?.touched">
+
+                <tr *ngIf="age?.hasError('required')">
+                    <td colspan="2" style="color:red;">Age is mandatory</td>
+                </tr>
+
+                <tr *ngIf="age?.hasError('min')">
+                    <td colspan="2" style="color:red;">Minimum age is 18</td>
+                </tr>
+
+                <tr *ngIf="age?.hasError('max')">
+                    <td colspan="2" style="color:red;">Maximum age is 60</td>
+                </tr>
+
+            </ng-container>
+
+            <!-- Email -->
+
+            <tr>
+                <td><label for="email">Enter Email :</label></td>
+                <td><input type="email" id="email" formControlName="email"></td>
+            </tr>
+
+            <ng-container *ngIf="email?.invalid && email?.touched">
+
+                <tr *ngIf="email?.hasError('required')">
+                    <td colspan="2" style="color:red;">Email is mandatory</td>
+                </tr>
+
+                <tr *ngIf="email?.hasError('email')">
+                    <td colspan="2" style="color:red;">Enter a valid email</td>
+                </tr>
+
+            </ng-container>
+
+            <!-- Password -->
+
+            <tr>
+                <td><label for="pwd">Enter Password :</label></td>
+                <td>
+                    <input
+                        type="password"
+                        id="pwd"
+                        formControlName="pwd"
+                        placeholder="Eg : Lannisters@3000">
+                </td>
+            </tr>
+
+            <ng-container *ngIf="pwd?.invalid && pwd?.touched">
+
+                <tr *ngIf="pwd?.hasError('required')">
+                    <td colspan="2" style="color:red;">
+                        Password is mandatory
+                    </td>
+                </tr>
+
+                <tr *ngIf="pwd?.hasError('pattern')">
+                    <td colspan="2" style="color:red;">
+                        Password must contain:
+                        <br>
+                        • Minimum 8 characters
+                        <br>
+                        • One uppercase letter
+                        <br>
+                        • One lowercase letter
+                        <br>
+                        • One number
+                        <br>
+                        • One special character
+                    </td>
+                </tr>
+
+            </ng-container>
+
+            <!-- Confirm Password -->
+
+            <tr>
+                <td><label for="cpwd">Confirm Password :</label></td>
+                <td><input type="password" id="cpwd" formControlName="cpwd"></td>
+            </tr>
+
+            <ng-container *ngIf="cpwd?.touched && cpwd?.value && pwd?.value !== cpwd?.value">
+
+                <tr>
+                    <td colspan="2" style="color:red;">
+                        Password does not match
+                    </td>
+                </tr>
+
+            </ng-container>
+
+            <!-- Gender -->
+
+            <tr>
+                <td>Gender :</td>
+
+                <td>
+                    <input
+                        type="radio"
+                        value="Male"
+                        formControlName="gender">
+                    Male
+                </td>
+
+                <td>
+                    <input
+                        type="radio"
+                        value="Female"
+                        formControlName="gender">
+                    Female
+                </td>
+
+            </tr>
+
+            <ng-container *ngIf="gender?.invalid && gender?.touched">
+
+                <tr>
+                    <td colspan="3" style="color:red;">
+                        Please choose your gender
+                    </td>
+                </tr>
+
+            </ng-container>
+
+            <!-- Country -->
+
+            <tr>
+
+                <td>Country :</td>
+
+                <td>
+
+                    <select formControlName="country">
+
+                        <option value="">Select Country</option>
+
+                        <option value="India">India</option>
+
+                        <option value="America">America</option>
+
+                        <option value="Australia">Australia</option>
+
+                    </select>
+
+                </td>
+
+            </tr>
+
+            <ng-container *ngIf="country?.invalid && country?.touched">
+
+                <tr>
+                    <td colspan="2" style="color:red;">
+                        Please choose your country
+                    </td>
+                </tr>
+
+            </ng-container>
+
+            <!-- Languages -->
+
+            <tr>
+
+                <td>Languages :</td>
+
+                <td>
+
+                    <div formArrayName="languages">
+
+                        <div *ngFor="let control of languages.controls; let i = index">
+
+                            <input
+                                type="checkbox"
+                                [formControlName]="i">
+
+                            {{ languageList[i] }}
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            <!-- Button -->
+
+            <tr>
+
+                <td>
+
+                    <button type="button" (click)="check()">
+
+                        Submit
+
+                    </button>
+
+                </td>
+                <td>
+                  <button type="button"(click)="display()">display</button>
+                </td>
+
+            </tr>
+
+        </table>
+
+    </fieldset>
+
+</form>
+

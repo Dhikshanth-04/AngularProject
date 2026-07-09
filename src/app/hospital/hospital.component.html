@@ -1,0 +1,9 @@
+<p>hospital works!</p>
+<div *ngFor="let patient of patients">
+    <p>Patient Name : {{patient.patientName}}</p>
+    <p>Patient Status : {{patient.patientStatus}}</p>
+    <p>Age : {{patient.patientAge}}</p>
+    <p [ngStyle]="{'color' : patient.discharge ? 'green' : 'red'}">Dischaged : {{patient.discharge}}</p>
+    <hr>
+    <p>Value from parent : {{prodName}}</p>
+</div>

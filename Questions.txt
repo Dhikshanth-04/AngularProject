@@ -973,7 +973,7 @@ Answer: JsonPipe is used in Angular templates, whereas JSON.stringify() is a Jav
 47. What is the difference between AsyncPipe and manual subscription?
 Answer: AsyncPipe automatically subscribes and unsubscribes, whereas manual subscription requires explicit cleanup.
 
-48. What is the difference between SlicePipe and JavaScript slice()?
+48. What is the difference between SlicePipe and JavaScript slice()? 
 Answer: SlicePipe is used inside Angular templates, while slice() is a JavaScript method used in TypeScript.
 
 49. What is the difference between Pipe Chaining and Nested Function Calls?
@@ -981,3 +981,35 @@ Answer: Pipe chaining is cleaner and more readable in templates, whereas nested 
 
 50. Explain a real-world application where multiple Built-in and Custom Pipes are used together.
 Answer: An Employee Management System may use DatePipe for joining dates, CurrencyPipe for salaries, UpperCasePipe for names, and a Custom Pipe to display employee status.
+
+
+==========================================================================================
+08-07-26 : 50 - ANGULAR  QUESTIONS
+
+1. What is angular ?
+
+2. What is template ?
+
+3. Why Angular 16 instead of 20 ? 
+        Angular 20 may have newer features, but the major companies still uses Angular 16, because of its LTS support, in many enterprise level projects. I learned Angular 16, because it is widely used in production and the concepts are transferrable to newer version. 
+
+4. Relation between CLI and NPM ?
+        * Angular CLI is installed using npm, npm installs packages and the angular CLI uses those packages to create and manage projects. 
+        * npm is the node package manager, CLI is the development tool.
+
+5. Relations between node.js and CLI ?
+        Node.js provides the run time environment, angular cli runs on node.js, without node.js, Angular CLI wont work.
+
+6. Angular expression vs Javascript expression :
+        * Angular expressions are written inside templates using {{}}
+        * Javascript expressions are written in js/ts files.
+        * Angular has Limited syntax and Javascript has full JS syntax.
+
+7.  What is forms, why angular introduces forms ? 
+        Angular forms provides an easy way to collect data, validate data and manager the user input without writing the large amounts of manual JS validation code. 
+
+8. How angular form internally works ?
+        * The form begins at typescript and html displays it. The typescript is brain, html is face. typescript -> create forms -> html displays it. 
+
+9. How does angular decides whether a FormGroup is valid?
+        Angular checks every form controls in the form group only if all the controls are valid, the form is valid. If one of the control are invalid, entire form is invalid. 

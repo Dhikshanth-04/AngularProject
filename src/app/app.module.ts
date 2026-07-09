@@ -3,12 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentComponent } from './student/student.component';
 import { ProductComponent } from './product/product.component';
 import { DiscountPipe } from './CustomPipes/discount.pipe';
 import { EmiPipe } from './CustomPipes/emi.pipe';
 import { AltCharCapPipe } from './CustomPipes/alt-char-cap.pipe';
+import { HospitalComponent } from './hospital/hospital.component';
+import { FormsComponent } from './forms/forms.component';
+import { TaskComponent } from './task/task.component';
 
 
 @NgModule({
@@ -18,12 +21,16 @@ import { AltCharCapPipe } from './CustomPipes/alt-char-cap.pipe';
     ProductComponent,
     DiscountPipe,
     EmiPipe,
-    AltCharCapPipe
+    AltCharCapPipe,
+    HospitalComponent,
+    FormsComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

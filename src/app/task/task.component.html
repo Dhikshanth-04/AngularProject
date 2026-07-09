@@ -1,0 +1,61 @@
+<p>task works!</p>
+<form [formGroup]="taskform">
+    <fieldset><legend>Task Form</legend>
+        <table>
+            <tr>
+                <td><label for="name">Enter name: </label></td>
+                <td><input type="text" formControlName="name" id="name" name="name" placeholder="Enter valid name.."></td>
+            </tr>
+            <ng-container *ngIf="name?.invalid && name?.touched">
+                <tr *ngIf="name?.hasError('required')">
+                    <td>Please enter the name..</td>
+                </tr>
+                <tr *ngIf="name?.hasError('pattern')">
+                    <td>Match the pattern<br>1st letter capital<br>No numbers<br>No Space</td>
+                </tr>
+            </ng-container>
+
+            <tr>
+                <td><label for="email">Enter email: </label></td>
+                <td><input type="email" formControlName="email" id="email" name="email" placeholder="Valid email.."></td>
+            </tr>
+             <ng-container *ngIf="email?.invalid && email?.touched">
+                <tr *ngIf="email?.hasError('required')">
+                    <td>Please enter the Email..</td>
+                </tr>
+                <tr *ngIf="email?.hasError('pattern')">
+                    <td>Match the pattern<br>2 special character<br>4 numbers<br>24 characters</td>
+                </tr>
+            </ng-container>
+
+            <tr>
+                <td><label for="pwd">Enter passsword: </label></td>
+                <td><input type="password" formControlName="pwd" id="pwd" name="pwd"></td>
+            </tr>
+            <ng-container *ngIf="pwd?.invalid && pwd?.touched">
+                <tr *ngIf="pwd?.hasError('required')">
+                    <td>Enter the passwrd</td>
+                </tr>
+                <tr *ngIf="pwd?.hasError('pattern')">
+                    <td>Match the pattern<br>14 character<br>number, special characters, characters allowed</td>
+                </tr>
+            </ng-container>
+
+            <tr>
+                <td><label for="cpwd">Re-Type password: </label></td>
+                <td><input type="password" formControlName="cpwd" id="cpwd" name="cpwd"></td>
+            </tr>
+            <ng-container *ngIf="cpwd?.touched && cpwd?.value && cpwd?.value!==pwd?.value">
+                <tr>
+                    <td>Passowrd does not match</td>
+                </tr>
+            </ng-container>
+            
+            <tr>
+                <td colspan="2">
+                    <button type="submit" (click)="submit()">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>

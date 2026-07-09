@@ -265,3 +265,34 @@ Pipe :
     * It has different types like; uppercase, lowercase, percent, currency, json, key-value pair, async too.
 
 Custom pipes : These are the user defined pipes created to transform the data, according to the application requirements. These pipes are used, when the built-in types are not satisfied. 
+
+Angular forms : 
+    * Instead of writing logics in html, everything will be wirtten in TS. Business logic -> TS -> HTML.
+    * Angular creates one object - FormGroup, inside - FormControls.
+    * Each fields are one FormControl....
+    * A reactive forms are model-driven approach in angular where the entire form and its validations are created and managed inside the typescript component instead of html template.
+
+FormControls : These are objects that manages the textbox. It keeps the track of state. State is whats happening in the input box right now. 
+
+FormGroup : It groups the related controls. 
+
+FormBuilder : Its like a helper, builds FormGroups. 
+
+?. : This notation is called as optional chaining, If the control exists, return the value else returns 'undefined'.
+
+Touched : Initially false, when the user focuses on the input field and leaves. It becomes true. 
+
+Dirty : The value of the form control has been changed from its original value. 
+
+Validation : The process of checking whether the user statisfies the required rules before processing or storing the data. 
+
+Cross field validation : One form control is verified with other form control.
+
+Form builder : Its a service that simplifies the creation of formgroup, form control and form array. It internally creates the same reactive objects, but with much cleaner syntax. 
+
+setValue(): It is used to set values for all controls  in a form.
+patchValue(): It is used set the values for specific fields
+
+@Input() : Its a decorator, used to receive data from a parent component to child component.
+
+@Output : ITs the decorator,  which is used to sedn data or event from child to parent component.

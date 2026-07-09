@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StudentService } from '../service/student.service';
+import { Input, Output } from '@angular/core'; 
 
 
 @Component({
@@ -12,4 +13,6 @@ export class StudentComponent {
   constructor(private studentService: StudentService){
     this.student = this.studentService.getStudent();
   }
+  @Input()
+  studentName!:string;
 }
