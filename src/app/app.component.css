@@ -14,3 +14,7 @@
 .border{
     border: 2px solid violet;
 }
+.active{
+    color: red;
+    font-weight: bold;
+}

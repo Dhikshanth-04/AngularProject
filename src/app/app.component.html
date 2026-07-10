@@ -1,5 +1,18 @@
+<!-- <app-academy [prodName]="data" (productClicked)="showMessage($event)"></app-academy>
 <app-student [studentName]="name"></app-student>
 <app-product></app-product>
 <app-hospital [prodName]="name"></app-hospital>
 <app-forms></app-forms>
-<app-task></app-task>
+<app-task></app-task> -->
+
+<h1>Routing testing</h1>
+<hr>
+<a routerLink="/" routerLinkActive="active">Home</a>
+|
+<a routerLink="/student" routerLinkActive="active">Student</a>
+|
+<a routerLink="/product" routerLinkActive="active">Product</a>
+|
+<a routerLink="/hospital" routerLinkActive="active">Hospital</a>
+
+<router-outlet></router-outlet>

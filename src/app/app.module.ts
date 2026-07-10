@@ -12,6 +12,7 @@ import { AltCharCapPipe } from './CustomPipes/alt-char-cap.pipe';
 import { HospitalComponent } from './hospital/hospital.component';
 import { FormsComponent } from './forms/forms.component';
 import { TaskComponent } from './task/task.component';
+import { AcademyComponent } from './academy/academy.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TaskComponent } from './task/task.component';
     AltCharCapPipe,
     HospitalComponent,
     FormsComponent,
-    TaskComponent
+    TaskComponent,
+    AcademyComponent
   ],
   imports: [
     BrowserModule,

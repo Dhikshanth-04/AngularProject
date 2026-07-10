@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-task',
@@ -12,8 +12,15 @@ export class TaskComponent {
     name: new FormControl('', [Validators.pattern('^[A-Z][a-z]+$'), Validators.required]),
     email: new FormControl('', [Validators.email, Validators.required]),
     pwd: new FormControl('', [Validators.pattern('^[a-zA-Z0-9].{13,}$'), Validators.required]),
-    cpwd: new FormControl('', Validators.required)
+    cpwd: new FormControl('', Validators.required),
+    languages: new FormArray([
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false)
+    ])
   });
+  LanguageList:string[] = ['A', 'B', 'C', 'D'];
   get name(){
     return this.taskform.get('name');
   }get email(){
@@ -22,6 +29,8 @@ export class TaskComponent {
     return this.taskform.get('pwd');
   }get cpwd(){
     return this.taskform.get('cpwd');
+  }get languages(){
+    return this.taskform.get('languages') as FormArray;
   }
 
   submit(){
@@ -31,4 +40,7 @@ export class TaskComponent {
       this.taskform.markAllAsTouched();
     }
   }
+  selected:string[]  = this.LanguageList.filter((values, index)=>{
+    this.languages.value[index];
+  })
 }

@@ -50,6 +50,19 @@
                     <td>Passowrd does not match</td>
                 </tr>
             </ng-container>
+
+            <tr>
+                <td>Languages : </td>
+                <td>
+                    <div formArrayName="languages">
+                        <div *ngFor="let control of languages.controls; let i = index">
+                            <input type="checkbox"
+                            [formControlName]="i">
+                            {{LanguageList[i]}} 
+                        </div>
+                    </div>
+                </td>
+            </tr>
             
             <tr>
                 <td colspan="2">

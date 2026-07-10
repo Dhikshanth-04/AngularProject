@@ -1,0 +1,9 @@
+<p>academy works!</p>
+<div *ngFor="let academyList of academy">
+    <p>Academy name: {{academyList.name}}</p>
+    <p>Academy area: {{academyList.area}}</p>
+    <p>Academy course: {{academyList.course}}</p>
+    <button (click)="buyProduct()">Buy</button>
+    <p>Cliked : {{prodName}}</p>
+    <hr>
+</div>

@@ -296,3 +296,19 @@ patchValue(): It is used set the values for specific fields
 @Input() : Its a decorator, used to receive data from a parent component to child component.
 
 @Output : ITs the decorator,  which is used to sedn data or event from child to parent component.
+
+EventEmitter : Its an angular class used to emit custom data or event to the parent class from the child class.
+
+emit() : It sends the data through the EventEmitter to the parent component
+
+$event : Its the special angular variable that contains the value emitted by the child component. 
+
+Routing : Its the process of navigating thorugh the components, within the single page application, without reloading the entire webpage.
+
+Angular - SPA : Angular is the single page application, where only one html page will be loaded initially, and different components are loaded dynamically, without loading the whole web page.
+
+Programmatic navigation : importing the router, defining the constructor, navigate. Instead of clicking the links, once the login is done, the home would be navigated. 
+
+<router-outlet></router-outlet> : Its the reserved space. 
+
+Routing steps : app-routing.module.ts(create routes, path:'', component:'') -> app.module.ts(import AppRoutingModule) -> app.component.html(create routerLinks in <a routerLink="/.."></a>) -> create router-outlet(the reserved place for loading the page. Its like TV screen).

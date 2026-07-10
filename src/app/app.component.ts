@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'first-angular';
-  name = "Dhikshanth loves SiiRii"
+  name = "angular is good"
+  data = "Laptop";
+  showMessage(msg:string){
+    alert(msg);
+  }
 }
 

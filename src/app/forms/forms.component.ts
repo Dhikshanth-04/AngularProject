@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
   styleUrls: ['./forms.component.css']
 })
 export class FormsComponent {
- myForm = new FormGroup({
+  myForm = new FormGroup({
   name: new FormControl('', [Validators.required, Validators.minLength(5)]),
   age: new FormControl('', [Validators.required, Validators.min(18), Validators.max(60)]),
   email: new FormControl('', [Validators.required, Validators.email]),
