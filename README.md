@@ -1430,3 +1430,541 @@ Topics Covered:
 - `ng new`
 - `ng serve`
 - How Angular Compiles an Application
+
+# 4. Angular CLI (Command Line Interface)
+
+Before understanding the Angular project structure, it is important to understand **Angular CLI**, because almost every Angular project begins with it.
+
+Angular CLI is responsible for creating, serving, building and maintaining Angular applications.
+
+---
+
+# What is Angular CLI?
+
+## Definition
+
+**Angular CLI** stands for **Angular Command Line Interface**.
+
+Instead of clicking buttons, we communicate with Angular through commands.
+
+Angular CLI is the official command-line tool provided by the Angular Team.
+
+It automates the creation, development, testing, building and maintenance of Angular applications through commands.
+
+---
+
+## Why do we need Angular CLI?
+
+Without Angular CLI, developers would have to:
+
+- Create hundreds of folders manually.
+- Configure TypeScript.
+- Configure Webpack.
+- Configure Angular Compiler.
+- Configure Project Structure.
+- Configure Build Process.
+
+Angular CLI does all these tasks automatically.
+
+---
+
+## Responsibilities of Angular CLI
+
+Angular CLI helps us to:
+
+- Create Angular Projects
+- Generate Components
+- Generate Services
+- Generate Directives
+- Generate Pipes
+- Compile Angular Applications
+- Build Applications
+- Run Development Server
+- Execute Tests
+
+---
+
+> 💡 **Remember**
+>
+> Angular CLI **does not execute the application inside the browser.**
+>
+> It prepares and serves the application during development.
+
+---
+
+## Angular CLI Workflow
+
+```
+Developer
+
+    │
+
+Runs Command
+
+    │
+
+Angular CLI
+
+    │
+
+Creates / Builds / Compiles Project
+
+    │
+
+Development Server Starts
+
+    │
+
+Browser Opens Application
+```
+
+---
+
+> 🎯 **Interview Question**
+
+**What is Angular CLI?**
+
+**Answer**
+
+Angular CLI is the official Command Line Interface provided by the Angular Team. It automates the creation, development, testing, building and maintenance of Angular applications using commands.
+
+---
+
+# Creating an Angular Project
+
+The command used to create a new Angular project is:
+
+```bash
+ng new project-name
+```
+
+---
+
+## Understanding the Command
+
+```bash
+ng new my-app
+```
+
+### ng
+
+Represents Angular CLI.
+
+---
+
+### new
+
+Creates a new Angular project.
+
+---
+
+### my-app
+
+Represents the project name.
+
+---
+
+## What happens after running `ng new`?
+
+```
+Developer
+
+      │
+
+ng new project-name
+
+      │
+
+Angular CLI Starts
+
+      │
+
+Creates Project Blueprint
+
+      │
+
+Downloads Required Packages
+
+      │
+
+Creates Folder Structure
+
+      │
+
+Angular Project Ready
+```
+
+---
+
+> 💡 **Remember**
+
+Angular CLI automatically creates the complete project structure.
+
+We don't have to create folders manually.
+
+---
+
+# Common Angular CLI Commands
+
+| Command | Purpose |
+|----------|----------|
+| `ng new` | Create New Project |
+| `ng serve` | Start Development Server |
+| `ng generate component` | Create Component |
+| `ng generate service` | Create Service |
+| `ng generate directive` | Create Directive |
+| `ng generate pipe` | Create Pipe |
+| `ng build` | Build Application |
+| `ng test` | Run Unit Tests |
+
+---
+
+## Frequently Used Shortcuts
+
+Instead of writing:
+
+```bash
+ng generate component home
+```
+
+We usually write:
+
+```bash
+ng g c home
+```
+
+---
+
+Similarly,
+
+```bash
+ng g s product
+```
+
+creates a Service.
+
+```bash
+ng g d highlight
+```
+
+creates a Directive.
+
+```bash
+ng g p currency
+```
+
+creates a Pipe.
+
+---
+
+> ⚠️ **Interview Trap**
+
+**Question**
+
+Does Angular CLI create components manually?
+
+**Answer**
+
+No.
+
+Angular CLI automatically creates:
+
+- HTML
+- CSS
+- TypeScript
+- Spec File
+
+along with updating the required Angular configuration files.
+
+---
+
+# Angular Compilation Process
+
+One of the most important interview topics.
+
+Many developers know how to run Angular.
+
+Very few know **what actually happens after typing `ng serve`.**
+
+---
+
+## Compilation Flow
+
+```
+ng serve
+
+      │
+
+Angular CLI Starts
+
+      │
+
+Reads package.json
+
+      │
+
+Reads angular.json
+
+      │
+
+Reads tsconfig.json
+
+      │
+
+Reads main.ts
+
+      │
+
+Angular Compiler Starts
+
+      │
+
+Reads all TypeScript Files
+
+      │
+
+Understands Components
+
+      │
+
+Processes Angular Templates
+
+      │
+
+Compiles TypeScript → JavaScript
+
+      │
+
+Bundles HTML + CSS + JavaScript
+
+      │
+
+Creates Optimized Files
+
+      │
+
+Starts Development Server
+
+      │
+
+Browser Downloads
+
+HTML
+
+CSS
+
+JavaScript
+
+      │
+
+Browser Executes JavaScript
+
+      │
+
+Angular Application Appears
+```
+
+---
+
+## Step-by-Step Explanation
+
+### Step 1
+
+```
+ng serve
+```
+
+Starts Angular CLI.
+
+---
+
+### Step 2
+
+Angular CLI reads:
+
+```
+package.json
+```
+
+to identify installed Angular packages.
+
+---
+
+### Step 3
+
+Angular CLI reads:
+
+```
+angular.json
+```
+
+to understand how the application should be built and served.
+
+---
+
+### Step 4
+
+Angular CLI reads:
+
+```
+tsconfig.json
+```
+
+to understand how TypeScript should be compiled.
+
+---
+
+### Step 5
+
+Angular CLI loads:
+
+```
+main.ts
+```
+
+which is the entry point of the application.
+
+---
+
+### Step 6
+
+Angular Compiler begins compilation.
+
+It:
+
+- Reads TypeScript files.
+- Understands Components.
+- Processes Templates.
+- Checks Decorators.
+- Resolves Imports.
+
+---
+
+### Step 7
+
+TypeScript is converted into JavaScript.
+
+---
+
+### Step 8
+
+Angular bundles:
+
+- HTML
+- CSS
+- JavaScript
+
+into optimized files.
+
+---
+
+### Step 9
+
+Development Server starts.
+
+---
+
+### Step 10
+
+The browser downloads:
+
+- HTML
+- CSS
+- JavaScript
+
+---
+
+### Step 11
+
+The browser executes JavaScript.
+
+Finally,
+
+The Angular application appears.
+
+---
+
+> 💡 **Memory Trick**
+
+Think of Angular CLI as a factory.
+
+```
+Raw Materials
+
+(TypeScript)
+
+↓
+
+Compiler
+
+↓
+
+JavaScript
+
+↓
+
+Browser
+
+↓
+
+Application
+```
+
+---
+
+> 🎯 **Interview Question**
+
+**Explain the Angular Compilation Process.**
+
+**Answer**
+
+When we execute `ng serve`, Angular CLI starts and reads `package.json`, `angular.json`, `tsconfig.json` and `main.ts`. The Angular Compiler then processes all TypeScript files, understands components, compiles TypeScript into JavaScript, bundles HTML, CSS and JavaScript, starts the development server and finally the browser executes the generated JavaScript to display the Angular application.
+
+---
+
+# Quick Revision
+
+✔ What is Angular CLI?
+
+✔ Why do we need Angular CLI?
+
+✔ Responsibilities of Angular CLI
+
+✔ `ng new`
+
+✔ `ng serve`
+
+✔ Common Angular CLI Commands
+
+✔ Angular Compilation Process
+
+✔ Complete `ng serve` Execution Flow
+
+---
+
+# Chapter Summary
+
+In this chapter, we learned:
+
+- What Angular CLI is.
+- Why Angular CLI is required.
+- How Angular projects are created.
+- Common Angular CLI commands.
+- The complete Angular compilation process.
+- What actually happens internally when `ng serve` is executed.
+
+These concepts form the bridge between Angular architecture and the project structure that we will study next.
+
+---
+
+➡️ **Next Chapter:** **Volume 2C – Angular Project Structure**
+
+Topics Covered:
+
+- package.json
+- node_modules
+- package-lock.json
+- angular.json
+- tsconfig.json
+- tsconfig.app.json
+- tsconfig.spec.json
