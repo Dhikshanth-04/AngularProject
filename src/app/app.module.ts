@@ -14,6 +14,7 @@ import { FormsComponent } from './forms/forms.component';
 import { TaskComponent } from './task/task.component';
 import { AcademyComponent } from './academy/academy.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EmployeeComponent } from './employee/employee.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     HospitalComponent,
     FormsComponent,
     TaskComponent,
-    AcademyComponent
+    AcademyComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,

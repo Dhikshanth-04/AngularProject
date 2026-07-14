@@ -89,7 +89,7 @@ Commands of ANGULAR CLI :
 NgModule : Angular decorator. @NgModule : it represents, this class is component 
 
 Compilation process :
-    ng serve -> angular CLI starts -> reads angular.json -> reads tsconfig.json -> reads main.ts -> angular compiler starts -> read all .ts files -> understands components -> processes angular templates -> compile ts to js -> bundle html, css -> creates optimised file -> development server starts -> browser downloads html, css, js -> browser executes js -> application appears. 
+    ng serve -> angular CLI starts -> package.json -> reads angular.json -> reads tsconfig.json -> reads main.ts -> angular compiler starts -> read all .ts files -> understands components -> processes angular templates -> compile ts to js -> bundle html, css -> creates optimised file -> development server starts -> browser downloads html, css, js -> browser executes js -> application appears. 
 
 ------------------------------------------------------------------------------------------
 
@@ -323,4 +323,9 @@ Get : Use created service -> create getMethod()-> return this.http.get(this.api)
 
 * To initially  load the data, put the function call in service constructor. 
 
+RxJS : 
+    * Reactive Extensions for javascript is the JS library, which provides observables, subscribe, subjects and operators to handle asynchronous functions in reactive way. 
 
+Observables : These are the data emitters, which emits the data over a time and we use subscribe to receive the data. 
+
+Zone.js : Its a js library, which is used to monitor the asynchronous operations, and notifies the angular to run change detection cycle and update the UI
