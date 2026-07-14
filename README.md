@@ -945,3 +945,488 @@ Correct understanding:
 - Node.js
 - Why Angular Needs Node.js
 - Dependency Tree
+
+# Bootstrapping
+
+## Definition
+
+**Bootstrapping** is the process of starting or initializing an Angular application.
+
+When Angular starts, it creates the **Root Component** and begins rendering the User Interface (UI).
+
+Simply put,
+
+> Bootstrapping is the process where Angular loads the application for the first time.
+
+---
+
+## Why is Bootstrapping Needed?
+
+Every application needs an entry point.
+
+Just like every Java program starts with:
+
+```java
+public static void main(String[] args)
+```
+
+Every Angular application also needs a starting point.
+
+Angular uses **Bootstrapping** to identify where the application should begin.
+
+---
+
+## Angular Bootstrapping Flow
+
+```
+Application Starts
+        │
+        ▼
+main.ts
+        │
+        ▼
+platformBrowserDynamic()
+        │
+        ▼
+bootstrapModule(AppModule)
+        │
+        ▼
+AppModule
+        │
+        ▼
+AppComponent
+        │
+        ▼
+index.html
+        │
+        ▼
+Browser Displays UI
+```
+
+---
+
+## What Happens During Bootstrapping?
+
+Angular performs the following steps:
+
+1. Reads **main.ts**
+2. Creates the Angular Platform
+3. Loads **AppModule**
+4. Reads **@NgModule**
+5. Finds the Bootstrap Component
+6. Creates the Root Component
+7. Renders the User Interface
+
+---
+
+> 💡 **Remember**
+>
+> Bootstrapping does **not** mean compiling the application.
+>
+> Bootstrapping simply means **starting** the Angular application.
+
+---
+
+> 🎯 **Interview Question**
+>
+> **What is Bootstrapping in Angular?**
+
+**Answer**
+
+Bootstrapping is the process of starting or initializing an Angular application. During this process, Angular creates the root component and begins rendering the application's user interface.
+
+---
+
+# Node.js
+
+## Definition
+
+**Node.js** is a JavaScript Runtime Environment.
+
+It allows JavaScript code to run **outside the browser**.
+
+Normally,
+
+JavaScript executes inside browsers like:
+
+- Chrome
+- Edge
+- Firefox
+
+Node.js allows JavaScript to execute on the operating system itself.
+
+---
+
+## Why was Node.js Created?
+
+Originally,
+
+JavaScript could only run inside browsers.
+
+Developers wanted JavaScript to also:
+
+- Build Servers
+- Execute Scripts
+- Build Applications
+- Run Development Tools
+
+Node.js solved this problem.
+
+---
+
+## What can Node.js do?
+
+Node.js can:
+
+- Run JavaScript outside the browser
+- Install packages using npm
+- Execute build tools
+- Run development servers
+- Execute Angular CLI commands
+
+---
+
+## Simple Workflow
+
+```
+JavaScript
+
+        │
+
+Browser Only ❌
+
+        │
+
+Node.js Introduced
+
+        │
+
+JavaScript Can Run
+
+✔ Browser
+
+✔ Operating System
+```
+
+---
+
+> 💡 **Remember**
+>
+> Node.js is **not a programming language.**
+>
+> It is **not a framework.**
+>
+> It is a **JavaScript Runtime Environment.**
+
+---
+
+> 🎯 **Interview Question**
+
+**What is Node.js?**
+
+**Answer**
+
+Node.js is a JavaScript Runtime Environment that allows JavaScript to run outside the browser.
+
+---
+
+# Why Angular Needs Node.js
+
+This is one of the most commonly asked Angular interview questions.
+
+Many beginners think:
+
+> Angular runs on Node.js.
+
+This is **incorrect**.
+
+---
+
+## Correct Understanding
+
+Angular applications always run inside the browser.
+
+Node.js is required only for the **development environment**.
+
+Angular uses Node.js because Angular CLI and its development tools are built on Node.js.
+
+---
+
+## Angular Development Flow
+
+```
+Developer
+
+      │
+
+Angular CLI
+
+      │
+
+Node.js
+
+      │
+
+Compile Angular
+
+      │
+
+Serve Application
+
+      │
+
+Browser Executes Application
+```
+
+---
+
+## What Uses Node.js?
+
+Angular CLI uses Node.js to:
+
+- Create Projects
+- Install Packages
+- Compile TypeScript
+- Start Development Server
+- Build Applications
+
+---
+
+## What Runs Inside the Browser?
+
+The browser executes:
+
+- HTML
+- CSS
+- JavaScript
+
+After Angular compiles TypeScript into JavaScript, the browser executes the generated JavaScript.
+
+---
+
+## Important Understanding
+
+```
+Angular Application
+
+Runs Inside Browser ✅
+
+Angular CLI
+
+Runs on Node.js ✅
+```
+
+---
+
+> ⚠️ **Common Confusion**
+
+**Question**
+
+Does Angular run on Node.js?
+
+**Answer**
+
+No.
+
+Angular applications run inside the browser.
+
+Only Angular's development tools such as Angular CLI run on Node.js.
+
+---
+
+> 💡 **Memory Trick**
+
+Think of Node.js as the **construction workers**.
+
+Think of the browser as the **house**.
+
+The workers build the house.
+
+People live inside the house.
+
+Similarly,
+
+Node.js builds the Angular application.
+
+The browser runs the Angular application.
+
+---
+
+> 🎯 **Interview Question**
+
+**Why does Angular need Node.js?**
+
+**Answer**
+
+Angular applications run inside the browser, but Angular CLI and development tools run on Node.js. Angular uses Node.js as the development environment to compile, build and serve Angular applications.
+
+---
+
+# Dependency Tree
+
+## Definition
+
+A **Dependency Tree** is the series of dependencies linked to one another.
+
+When one package depends on another package, and that package depends on another package, Angular creates a dependency hierarchy.
+
+This hierarchy is called the **Dependency Tree**.
+
+---
+
+## Example
+
+Suppose your project requires:
+
+```
+Angular
+```
+
+Angular itself requires:
+
+```
+TypeScript
+
+RxJS
+
+Zone.js
+```
+
+TypeScript may require other packages.
+
+RxJS may require other packages.
+
+Those packages may require even more packages.
+
+Together, they form a Dependency Tree.
+
+---
+
+## Visualization
+
+```
+Angular Project
+
+        │
+
+        ▼
+
+@angular/core
+
+        │
+
+ ┌──────┼─────────┐
+
+ │      │         │
+
+ ▼      ▼         ▼
+
+RxJS  Zone.js  TypeScript
+
+ │
+
+ ▼
+
+Other Packages
+
+ │
+
+ ▼
+
+More Packages
+```
+
+---
+
+## Why is the Dependency Tree Important?
+
+It helps Angular:
+
+- Manage package relationships
+- Install required libraries
+- Maintain version compatibility
+- Prevent missing dependencies
+
+---
+
+> 💡 **Remember**
+
+The larger the project,
+
+the larger the Dependency Tree.
+
+That is why the **node_modules** folder becomes very large.
+
+---
+
+> 🎯 **Interview Question**
+
+**What is a Dependency Tree?**
+
+**Answer**
+
+A Dependency Tree is the hierarchy of packages where one dependency depends on another dependency. Angular uses this hierarchy to manage package installation and relationships.
+
+---
+
+# Quick Revision
+
+## Core Architecture
+
+✔ What is Bootstrapping?
+
+✔ Why is Bootstrapping needed?
+
+✔ Angular Bootstrapping Flow
+
+---
+
+## Node.js
+
+✔ What is Node.js?
+
+✔ Why was Node.js created?
+
+✔ What can Node.js do?
+
+✔ Why does Angular need Node.js?
+
+✔ Does Angular run on Node.js?
+
+---
+
+## Dependency Tree
+
+✔ What is a Dependency Tree?
+
+✔ Why is it important?
+
+✔ Why is the `node_modules` folder so large?
+
+---
+
+# Chapter Summary
+
+In this chapter, we learned the remaining foundational concepts required before understanding Angular's project structure and execution.
+
+We covered:
+
+- Bootstrapping
+- Node.js
+- Why Angular Needs Node.js
+- Dependency Tree
+
+These concepts explain **how Angular starts**, **where Angular runs**, and **how Angular manages its dependencies**.
+
+---
+
+➡️ **Next Chapter:** **Volume 2B – Angular CLI & Compilation Process**
+
+Topics Covered:
+
+- Angular CLI
+- Angular CLI Commands
+- Compilation Process
+- `ng new`
+- `ng serve`
+- How Angular Compiles an Application
