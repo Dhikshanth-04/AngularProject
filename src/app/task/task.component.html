@@ -1,6 +1,6 @@
 <p>task works!</p>
 <form [formGroup]="taskform">
-    <fieldset><legend>Task Form</legend>
+    <fieldset style="width: fit-content;"><legend>Task Form</legend>
         <table>
             <tr>
                 <td><label for="name">Enter name: </label></td>
@@ -28,6 +28,35 @@
                 </tr>
             </ng-container>
 
+
+
+            <tr>
+                <td><label for="gender">Enter Gender: </label></td>
+                <td><input type="radio" value="Male" id="gender" name="gender" formControlName="gender">Male</td>
+                <td><input type="radio" value="Female" id="gender" name="gender" formControlName="gender">Female</td>
+            </tr>
+
+            <tr>
+                <td><label for="color">Choose color: </label></td>
+                <td><input type="color" id="color" name="color" formControlName="color"></td>
+            </tr>
+
+            <tr>
+                <td><label for="mobile">Enter Mobile:</label></td>
+                <td><input type="tel" id="mobile" name="mobile" formControlName="mobile"></td>
+            </tr>
+
+            <tr>
+                <td>Courses : </td>
+                <div formArrayName="courses">
+                    <div *ngFor="let controls of courses.controls; let i=index">
+                        <td><input type="checkbox" [formControlName]="i">{{courseList[i]}}</td>
+                    </div>
+                </div>
+            </tr>
+
+
+
             <tr>
                 <td><label for="pwd">Enter passsword: </label></td>
                 <td><input type="password" formControlName="pwd" id="pwd" name="pwd"></td>
@@ -52,23 +81,53 @@
             </ng-container>
 
             <tr>
-                <td>Languages : </td>
-                <td>
-                    <div formArrayName="languages">
-                        <div *ngFor="let control of languages.controls; let i = index">
-                            <input type="checkbox"
-                            [formControlName]="i">
-                            {{LanguageList[i]}} 
-                        </div>
-                    </div>
-                </td>
+                <td colspan="2"><label for="agree">accept the Terms and Conditions: </label></td>
+                <td><input type="checkbox" id="agree" name="agree" formControlName="agree"></td>
             </tr>
             
             <tr>
                 <td colspan="2">
-                    <button type="submit" (click)="submit()">Submit</button>
+                    <button type="button" (click)="submit()">Submit</button>
                 </td>
             </tr>
         </table>
     </fieldset>
 </form>
+<hr>
+
+
+<table border="2">
+    <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Gender</td>
+        <td>Color</td>
+        <td>Mobile</td>
+        <td>Courses</td>
+        <td>Password</td>
+        <td>Confirm Password</td>
+        <td>Agreed</td>
+        <td colspan="2">Actions</td>
+    </tr>
+    <tr *ngFor="let student of students">
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.gender}}</td>
+        <td><div
+                style="width:30px;height:30px;border-radius:50%;"
+                [style.background]="student.color">
+        </div></td>
+        <td>{{student.mobile}}</td>
+        <td><span *ngFor="let selected of student.courses let i=index">
+            <ng-container *ngIf="selected">
+                {{courseList[i]}},
+            </ng-container>
+        </span></td>
+        <td>{{student.pwd}}</td>
+        <td>{{student.cpwd}}</td>
+        <td>{{student.agree}}</td>
+        <td><button type="button" (click)="edit(student)">Edit</button></td>
+        <td><button type="button" (click)="delete(student.id)">Delete</button></td>
+    </tr>
+</table>
+

@@ -10,7 +10,7 @@ Difference between AngularJS and Angular :
 Semantic Versioning : 
     * The Semantic Versioning is the process of naming the version, with the meaning full context, initial version: 1.0, small feature added, it would be 1.1, if the whole new design is produced, this is version 2.0. This naming process is known as semantic versioning. (major. minor. patch)
 
-------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 Evolution of ANGULAR : 
 
@@ -55,8 +55,6 @@ Angular 17: The templates looks cleaner and seems like a programming.
 Angular 18 - 20: Server side improvement, signal improvement, performance. 
 
 ------------------------------------------------------------------------------------------
-
-Component : Its the small block of reusable code, works independently, and the part of the UI, like navrbar, search bar, footer, etc...
 
 Modules : Its a logical container, that groups or organizes related anugalr building block together. For Example : Authentication module : login component, Register component, Forgot password component.
 
@@ -312,3 +310,17 @@ Programmatic navigation : importing the router, defining the constructor, naviga
 <router-outlet></router-outlet> : Its the reserved space. 
 
 Routing steps : app-routing.module.ts(create routes, path:'', component:'') -> app.module.ts(import AppRoutingModule) -> app.component.html(create routerLinks in <a routerLink="/.."></a>) -> create router-outlet(the reserved place for loading the page. Its like TV screen).
+
+Lifehooks :These are pre-defined methods provided by the angular that allows developers to execute custom code at different stages of the components's lifecycle. 
+
+lifecycle of the component : The lifecycle of the component is defined the sequence of stages a component, goes through from creation to destruction. Angular provides lifehooks, to execute custom code during these stages.
+
+workflow : create homeComponentObject -> constructor() -> receives @Input values -> ngOnChanges(), values changes from parent to child -> initialize component -> ngOnInit() -> create HTML -> ngAfterVieInit() -> user works with page -> click about -> ngOnDestroy() -> destroy homeComponentObject -> create aboutComponent.
+
+Post : create service -> import httpClient -> get api link -> create constructor(private http:httpClient){} -> create post method(data:any) -> return this.http.post(this.api, data) -> task.ts -> create constructor for service -> onSubmit() -> this.crud.postMethod(this.task.value).subscribe((res)=>{console...});
+
+Get : Use created service -> create getMethod()-> return this.http.get(this.api) -> task.ts -> ObjectName: any[] = []; -> load()-> this.crud.getMethod().subscribe((data:any)=>{this.ObjectName=data});
+
+* To initially  load the data, put the function call in service constructor. 
+
+

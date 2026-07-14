@@ -1,0 +1,38 @@
+{
+  "user": [
+    {
+      "name": "Nirmala",
+      "email": "nirmala@gmail.com",
+      "gender": "Female",
+      "color": "#f01414",
+      "mobile": "08056437604",
+      "courses": [
+        false,
+        true,
+        true,
+        false
+      ],
+      "agree": true,
+      "pwd": "qwerty",
+      "cpwd": "qwerty",
+      "id": 1
+    },
+    {
+      "name": "Harini",
+      "email": "siirii@gmail.com",
+      "gender": "Female",
+      "color": "#2ac0be",
+      "mobile": "9342965185",
+      "courses": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "agree": true,
+      "pwd": "siirii",
+      "cpwd": "siirii",
+      "id": 2
+    }
+  ]
+}

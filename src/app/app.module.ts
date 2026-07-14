@@ -13,6 +13,7 @@ import { HospitalComponent } from './hospital/hospital.component';
 import { FormsComponent } from './forms/forms.component';
 import { TaskComponent } from './task/task.component';
 import { AcademyComponent } from './academy/academy.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AcademyComponent } from './academy/academy.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

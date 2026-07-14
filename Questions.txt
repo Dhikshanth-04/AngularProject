@@ -1013,3 +1013,666 @@ Answer: An Employee Management System may use DatePipe for joining dates, Curren
 
 9. How does angular decides whether a FormGroup is valid?
         Angular checks every form controls in the form group only if all the controls are valid, the form is valid. If one of the control are invalid, entire form is invalid. 
+
+
+
+=========================================================
+ANGULAR DIFFERENCE QUESTIONS (BEGINNER TO INTERMEDIATE)
+=========================================================
+
+1. Component vs Directive
+
+Component:
+Used to create UI with HTML, CSS, and TS.
+
+Directive:
+Used to change the behavior or appearance of an existing element.
+
+
+---------------------------------------------------------
+
+2. Component vs Service
+
+Component:
+Handles UI and user interactions.
+
+Service:
+Contains reusable business logic and API calls.
+
+
+---------------------------------------------------------
+
+3. Service vs Dependency Injection
+
+Service:
+A class containing reusable logic.
+
+Dependency Injection:
+A design pattern used to provide service objects.
+
+
+---------------------------------------------------------
+
+4. Dependency Injection vs Constructor Injection
+
+Dependency Injection:
+Overall mechanism of providing dependencies.
+
+Constructor Injection:
+Receiving dependencies through the constructor.
+
+
+---------------------------------------------------------
+
+5. Constructor vs ngOnInit()
+
+Constructor:
+Used for object creation and dependency injection.
+
+ngOnInit():
+Used for initialization after Angular creates the component.
+
+
+---------------------------------------------------------
+
+6. ngOnInit() vs ngOnDestroy()
+
+ngOnInit():
+Runs once after component initialization.
+
+ngOnDestroy():
+Runs before destroying the component for cleanup.
+
+
+---------------------------------------------------------
+
+7. Structural Directive vs Attribute Directive
+
+Structural:
+Adds or removes DOM elements.
+
+Attribute:
+Changes appearance or behavior without changing DOM.
+
+
+---------------------------------------------------------
+
+8. *ngIf vs hidden
+
+*ngIf:
+Removes element from DOM.
+
+hidden:
+Only hides the element.
+
+
+---------------------------------------------------------
+
+9. ngFor vs ngSwitch
+
+ngFor:
+Repeats elements.
+
+ngSwitch:
+Displays one matching block.
+
+
+---------------------------------------------------------
+
+10. ngClass vs ngStyle
+
+ngClass:
+Applies CSS classes.
+
+ngStyle:
+Applies inline CSS.
+
+
+---------------------------------------------------------
+
+11. Pipe vs Directive
+
+Pipe:
+Transforms displayed data.
+
+Directive:
+Changes element behavior.
+
+
+---------------------------------------------------------
+
+12. Pure Pipe vs Impure Pipe
+
+Pure:
+Runs only when input changes.
+
+Impure:
+Runs during every change detection cycle.
+
+
+---------------------------------------------------------
+
+13. Built-in Pipe vs Custom Pipe
+
+Built-in:
+Provided by Angular.
+
+Custom:
+Created by the developer.
+
+
+---------------------------------------------------------
+
+14. Property Binding vs Attribute Binding
+
+Property:
+Binds DOM properties.
+
+Attribute:
+Binds HTML attributes.
+
+
+---------------------------------------------------------
+
+15. Property Binding vs Interpolation
+
+Property Binding:
+Used for element properties.
+
+Interpolation:
+Displays values.
+
+
+---------------------------------------------------------
+
+16. Property Binding vs Event Binding
+
+Property Binding:
+Component → View.
+
+Event Binding:
+View → Component.
+
+
+---------------------------------------------------------
+
+17. One-way vs Two-way Data Binding
+
+One-way:
+Single direction.
+
+Two-way:
+Both directions.
+
+
+---------------------------------------------------------
+
+18. Event Binding vs Two-way Binding
+
+Event Binding:
+Receives events only.
+
+Two-way:
+Updates both UI and component.
+
+
+---------------------------------------------------------
+
+19. Template-driven Forms vs Reactive Forms
+
+Template-driven:
+Logic in HTML.
+
+Reactive:
+Logic in TypeScript.
+
+
+---------------------------------------------------------
+
+20. FormControl vs FormGroup
+
+FormControl:
+Single field.
+
+FormGroup:
+Collection of fields.
+
+
+---------------------------------------------------------
+
+21. FormGroup vs FormArray
+
+FormGroup:
+Named controls.
+
+FormArray:
+Indexed controls.
+
+
+---------------------------------------------------------
+
+22. FormArray vs JavaScript Array
+
+FormArray:
+Supports validation.
+
+Array:
+Normal JS collection.
+
+
+---------------------------------------------------------
+
+23. setValue() vs patchValue()
+
+setValue():
+Updates every control.
+
+patchValue():
+Updates selected controls.
+
+
+---------------------------------------------------------
+
+24. Validators vs Custom Validators
+
+Validators:
+Provided by Angular.
+
+Custom Validators:
+Created by developer.
+
+
+---------------------------------------------------------
+
+25. Synchronous vs Asynchronous Validation
+
+Sync:
+Returns immediately.
+
+Async:
+Waits for server or async operation.
+
+
+---------------------------------------------------------
+
+26. GET vs POST
+
+GET:
+Retrieves data.
+
+POST:
+Creates data.
+
+
+---------------------------------------------------------
+
+27. POST vs PUT
+
+POST:
+Creates new resource.
+
+PUT:
+Updates existing resource.
+
+
+---------------------------------------------------------
+
+28. PUT vs PATCH
+
+PUT:
+Updates complete object.
+
+PATCH:
+Updates selected fields.
+
+
+---------------------------------------------------------
+
+29. PUT vs DELETE
+
+PUT:
+Updates resource.
+
+DELETE:
+Removes resource.
+
+
+---------------------------------------------------------
+
+30. Observable vs Promise
+
+Observable:
+Multiple values.
+
+Promise:
+Single value.
+
+
+---------------------------------------------------------
+
+31. RxJS vs Observable
+
+RxJS:
+Library.
+
+Observable:
+Feature provided by RxJS.
+
+
+---------------------------------------------------------
+
+32. Observable vs Subject
+
+Observable:
+Only emits data.
+
+Subject:
+Can emit and receive data.
+
+
+---------------------------------------------------------
+
+33. subscribe() vs next()
+
+subscribe():
+Receives values.
+
+next():
+Emits values.
+
+
+---------------------------------------------------------
+
+34. map() vs filter()
+
+map():
+Transforms data.
+
+filter():
+Filters data.
+
+
+---------------------------------------------------------
+
+35. switchMap() vs map()
+
+map():
+Transforms values.
+
+switchMap():
+Cancels previous Observable and switches to a new one.
+
+
+---------------------------------------------------------
+
+36. tap() vs map()
+
+tap():
+Performs side effects.
+
+map():
+Changes emitted values.
+
+
+---------------------------------------------------------
+
+37. debounceTime() vs throttleTime()
+
+debounceTime():
+Waits until typing stops.
+
+throttleTime():
+Allows one event per interval.
+
+
+---------------------------------------------------------
+
+38. Zone.js vs RxJS
+
+Zone.js:
+Monitors asynchronous tasks.
+
+RxJS:
+Handles asynchronous data streams.
+
+
+---------------------------------------------------------
+
+39. Zone.js vs Change Detection
+
+Zone.js:
+Detects async completion.
+
+Change Detection:
+Checks values and updates DOM.
+
+
+---------------------------------------------------------
+
+40. Change Detection vs Data Binding
+
+Change Detection:
+Checks for data changes.
+
+Data Binding:
+Displays data in UI.
+
+
+---------------------------------------------------------
+
+41. Renderer2 vs ElementRef
+
+Renderer2:
+Safe DOM manipulation.
+
+ElementRef:
+Direct DOM access.
+
+
+---------------------------------------------------------
+
+42. HostBinding vs HostListener
+
+HostBinding:
+Binds host properties.
+
+HostListener:
+Listens to host events.
+
+
+---------------------------------------------------------
+
+43. Custom Directive vs Built-in Directive
+
+Custom:
+Developer-created.
+
+Built-in:
+Provided by Angular.
+
+
+---------------------------------------------------------
+
+44. Event Bubbling vs Event Capturing
+
+Bubbling:
+Child → Parent.
+
+Capturing:
+Parent → Child.
+
+
+---------------------------------------------------------
+
+45. stopPropagation() vs preventDefault()
+
+stopPropagation():
+Stops event propagation.
+
+preventDefault():
+Stops browser default action.
+
+
+---------------------------------------------------------
+
+46. Route vs Router
+
+Route:
+Configuration object.
+
+Router:
+Navigation service.
+
+
+---------------------------------------------------------
+
+47. routerLink vs navigate()
+
+routerLink:
+Template navigation.
+
+navigate():
+Programmatic navigation.
+
+
+---------------------------------------------------------
+
+48. Relative Routing vs Absolute Routing
+
+Relative:
+Based on current route.
+
+Absolute:
+Starts from root.
+
+
+---------------------------------------------------------
+
+49. ActivatedRoute vs Router
+
+ActivatedRoute:
+Reads route information.
+
+Router:
+Performs navigation.
+
+
+---------------------------------------------------------
+
+50. JSON vs JavaScript Object
+
+JSON:
+Text format.
+
+Object:
+JavaScript data structure.
+
+
+---------------------------------------------------------
+
+51. JSON vs JSON Server
+
+JSON:
+Data format.
+
+JSON Server:
+Fake REST API.
+
+
+---------------------------------------------------------
+
+52. Local Variable vs Template Reference Variable
+
+Local Variable:
+Inside TS function.
+
+Template Variable:
+Inside HTML using #.
+
+
+---------------------------------------------------------
+
+53. HTML Attribute vs DOM Property
+
+Attribute:
+Initial HTML value.
+
+Property:
+Current runtime value.
+
+
+---------------------------------------------------------
+
+54. Browser DOM vs Angular DOM
+
+Browser DOM:
+Managed manually.
+
+Angular DOM:
+Managed automatically.
+
+
+---------------------------------------------------------
+
+55. ViewChild vs ElementRef
+
+ViewChild:
+Gets Angular component/directive reference.
+
+ElementRef:
+Gets actual DOM element.
+
+
+---------------------------------------------------------
+
+56. ngOnChanges() vs ngOnInit()
+
+ngOnChanges():
+Runs whenever @Input changes.
+
+ngOnInit():
+Runs only once.
+
+
+---------------------------------------------------------
+
+57. ngDoCheck() vs ngOnChanges()
+
+ngDoCheck():
+Custom change detection.
+
+ngOnChanges():
+Runs only for @Input changes.
+
+
+---------------------------------------------------------
+
+58. Lazy Loading vs Eager Loading
+
+Lazy:
+Loads modules when needed.
+
+Eager:
+Loads everything at startup.
+
+
+---------------------------------------------------------
+
+59. Module vs Component
+
+Module:
+Groups Angular features.
+
+Component:
+Displays UI.
+
+
+---------------------------------------------------------
+
+60. SPA vs Traditional Web Application
+
+SPA:
+Loads once and updates content dynamically.
+
+Traditional:
+Reloads entire page for every request.
