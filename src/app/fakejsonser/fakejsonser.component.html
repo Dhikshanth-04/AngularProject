@@ -1,0 +1,24 @@
+<p>fakejsonser works!</p>
+<table border="1">
+
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Maiden Name</td>
+        <td>Age</td>
+        <td>Gender</td>
+        <td>Email</td>
+        <td>Hair Color</td>
+        <td>Hair style</td>
+    </tr>
+    <tr *ngFor="let fake of user">
+        <td>{{fake.firstName}}</td>
+        <td>{{fake.lastName}}</td>
+        <td>{{fake.maidenName}}</td>
+        <td>{{fake.age}}</td>
+        <td>{{fake.gender}}</td>
+        <td>{{fake.email}}</td>
+        <td>{{fake.hair.color}}</td>
+        <td>{{fake.hair.type}}</td>
+    </tr>
+</table>

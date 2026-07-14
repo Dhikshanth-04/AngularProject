@@ -15,6 +15,7 @@ import { TaskComponent } from './task/task.component';
 import { AcademyComponent } from './academy/academy.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeComponent } from './employee/employee.component';
+import { FakejsonserComponent } from './fakejsonser/fakejsonser.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { EmployeeComponent } from './employee/employee.component';
     FormsComponent,
     TaskComponent,
     AcademyComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    FakejsonserComponent
   ],
   imports: [
     BrowserModule,
