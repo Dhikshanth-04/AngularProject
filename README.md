@@ -14129,18 +14129,5589 @@ Angular Forms
 
 ## What's Next?
 
-The next section moves beyond forms and into **Angular HTTP Communication**, where our Registration Form will stop printing data to the console and start communicating with a backend.
+# 13.5 CREATE Operation (POST)
 
-We'll learn:
+The **CREATE** operation is used to add new data to the backend.
 
-- HTTP Client
+In Angular, the CREATE operation is performed using the **HTTP POST** method.
+
+Whenever a user fills out a form and clicks the **Submit** button, Angular sends the entered data to the server, where a new record is created.
+
+---
+
+# Employee Management System Progress
+
+```
+✅ Reactive Forms Completed
+
+✅ JSON Server Connected
+
+🟢 Current Chapter → CREATE (POST)
+
+⬜ READ (GET)
+
+⬜ UPDATE (PUT)
+
+⬜ DELETE (DELETE)
+```
+
+---
+
+# What is POST?
+
+POST is an HTTP method used to send new data from the client to the server.
+
+Every successful POST request creates a new record.
+
+Example:
+
+```
+Student Registration
+
+↓
+
+Enter Details
+
+↓
+
+Submit
+
+↓
+
+POST Request
+
+↓
+
+JSON Server
+
+↓
+
+New Student Created
+```
+
+---
+
+# Why do we use POST?
+
+Without POST,
+
+the application can collect user input,
+
+but it cannot save the data permanently.
+
+POST allows Angular to send the form data to the backend and create a new record.
+
+---
+
+# Project Folder Structure
+
+```
+src
+
+└── app
+
+    ├── task
+
+    │     ├── task.component.ts
+
+    │     ├── task.component.html
+
+    │     └── task.component.css
+
+    │
+
+    ├── service
+
+    │     └── crud.service.ts
+
+    │
+
+    ├── app.module.ts
+
+    │
+
+    └── app-routing.module.ts
+```
+
+---
+
+# Project Workflow
+
+```
+User
+
+↓
+
+Fills Registration Form
+
+↓
+
+Clicks Submit
+
+↓
+
+Component
+
+↓
+
+CRUD Service
+
+↓
+
+HttpClient
+
+↓
+
+HTTP POST
+
+↓
+
+JSON Server
+
+↓
+
+Student Added
+
+↓
+
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+Success Response
+
+↓
+
+Refresh Data
+
+↓
+
+Reset Form
+```
+
+---
+
+# Step 1 - Import HttpClientModule
+
+## app.module.ts
+
+```ts
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+
+imports:[
+
+BrowserModule,
+
+ReactiveFormsModule,
+
+HttpClientModule
+
+]
+
+})
+```
+
+---
+
+## Why do we import HttpClientModule?
+
+Angular cannot communicate with APIs by default.
+
+Importing `HttpClientModule` enables Angular to send HTTP requests such as:
+
 - GET
 - POST
 - PUT
 - DELETE
-- JSON Server
-- CRUD Operations
-- Observables
-- subscribe()
 
-This is where Angular applications become fully functional.
+Without this module,
+
+CRUD operations will not work.
+
+---
+
+# Step 2 - Create the Service
+
+## crud.service.ts
+
+```ts
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+
+providedIn:'root'
+
+})
+
+export class CrudService{
+
+url="http://localhost:3000/user";
+
+constructor(
+
+private http:HttpClient
+
+){}
+
+addStudent(data:any){
+
+return this.http.post(
+
+this.url,
+
+data
+
+);
+
+}
+
+}
+```
+
+---
+
+# Understanding the Service
+
+### URL
+
+```ts
+url="http://localhost:3000/user";
+```
+
+This is the API endpoint where JSON Server stores student records.
+
+---
+
+### Constructor Injection
+
+```ts
+constructor(
+
+private http:HttpClient
+
+){}
+```
+
+Angular injects the HttpClient service using Dependency Injection.
+
+This service is responsible for making HTTP requests.
+
+---
+
+### addStudent()
+
+```ts
+addStudent(data:any)
+```
+
+This method receives the form data from the component.
+
+---
+
+### POST Request
+
+```ts
+return this.http.post(
+
+this.url,
+
+data
+
+);
+```
+
+Angular sends the form data to JSON Server.
+
+A new student record is created.
+
+The method returns an **Observable**.
+
+---
+
+# Step 3 - Component
+
+## task.component.ts
+
+```ts
+submit(){
+
+if(this.taskform.valid){
+
+this.crud.addStudent(
+
+this.taskform.value
+
+).subscribe((res)=>{
+
+console.log(res);
+
+this.getUser();
+
+this.taskform.reset();
+
+alert("Form Submitted Successfully");
+
+});
+
+}
+
+else{
+
+this.taskform.markAllAsTouched();
+
+}
+
+}
+```
+
+---
+
+# Understanding the Component
+
+### Form Validation
+
+```ts
+if(this.taskform.valid)
+```
+
+Checks whether all form validations are successful.
+
+If validation fails,
+
+Angular will not submit the data.
+
+---
+
+### Calling the Service
+
+```ts
+this.crud.addStudent(
+
+this.taskform.value
+)
+```
+
+The form values are sent to the Service.
+
+The Service sends them to JSON Server using an HTTP POST request.
+
+---
+
+### subscribe()
+
+```ts
+.subscribe((res)=>{
+
+...
+});
+```
+
+The POST request returns an Observable.
+
+Angular executes the request only after calling `subscribe()`.
+
+Without `subscribe()`,
+
+the request will never be sent.
+
+---
+
+### Refresh the Table
+
+```ts
+this.getUser();
+```
+
+After adding a new student,
+
+the latest records are fetched again.
+
+This updates the UI immediately.
+
+---
+
+### Reset the Form
+
+```ts
+this.taskform.reset();
+```
+
+Clears all input fields after successful submission.
+
+The form is ready to accept another record.
+
+---
+
+# Step 4 - HTML
+
+## task.component.html
+
+```html
+<form
+
+[formGroup]="taskform"
+
+(ngSubmit)="submit()">
+
+<!-- Form Fields -->
+
+<button type="submit">
+
+Submit
+
+</button>
+
+</form>
+```
+
+---
+
+# Complete Execution Flow
+
+```
+User Fills Form
+
+↓
+
+Angular Validates Form
+
+↓
+
+Submit Button
+
+↓
+
+submit()
+
+↓
+
+addStudent()
+
+↓
+
+HttpClient.post()
+
+↓
+
+JSON Server
+
+↓
+
+Student Created
+
+↓
+
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+getUser()
+
+↓
+
+Updated Table
+
+↓
+
+Form Reset
+```
+
+---
+
+# Sample Request
+
+```json
+{
+"name":"Dhikshanth",
+"email":"abc@gmail.com",
+"password":"Angular@123"
+}
+```
+
+---
+
+# Sample Response
+
+```json
+{
+"id":15,
+"name":"Dhikshanth",
+"email":"abc@gmail.com",
+"password":"Angular@123"
+}
+```
+
+Notice that JSON Server automatically generates the **id**.
+
+---
+
+# Common Mistakes
+
+## ❌ Forgetting HttpClientModule
+
+```
+NullInjectorError:
+No provider for HttpClient
+```
+
+### Solution
+
+Import
+
+```ts
+HttpClientModule
+```
+
+inside `app.module.ts`.
+
+---
+
+## ❌ Forgetting subscribe()
+
+```ts
+this.crud.addStudent(data);
+```
+
+The request is created,
+
+but it is **never executed**.
+
+Always call:
+
+```ts
+.subscribe()
+```
+
+---
+
+## ❌ Calling getUser() before the POST request finishes
+
+Incorrect
+
+```ts
+this.crud.addStudent(data).subscribe();
+
+this.getUser();
+```
+
+Correct
+
+```ts
+this.crud.addStudent(data).subscribe((res)=>{
+
+this.getUser();
+
+});
+```
+
+This ensures the table refreshes **after** the new record has been created.
+
+---
+
+# 🧠 How I Remember POST
+
+```
+POST
+
+↓
+
+New Record
+
+↓
+
+Creates Something
+
+↓
+
+Database Size Increases
+
+↓
+
+New ID Generated
+```
+
+Whenever I hear **POST**,
+
+I immediately think:
+
+**"Create a new record."**
+
+---
+
+# 🎯 Interview Nuggets
+
+✔ POST is used to create new records.
+
+✔ `HttpClient.post()` returns an Observable.
+
+✔ The request executes only after calling `subscribe()`.
+
+✔ JSON Server automatically generates an ID.
+
+✔ Refresh the data after a successful POST request.
+
+✔ Reset the form after successful submission.
+
+---
+
+# 📌 Key Takeaways
+
+- POST creates new records.
+- Angular uses `HttpClient.post()` to send data.
+- Services separate business logic from components.
+- `subscribe()` is required to execute the request.
+- Refresh the UI after a successful POST operation.
+- Reset the form to prepare for the next entry.
+
+---
+
+## Next Chapter
+
+# 13.6 READ Operation (GET)
+
+In the next chapter, we'll learn how to retrieve all student records from JSON Server and display them in an Angular table using **HTTP GET**.
+
+# 13.6 READ Operation (GET)
+
+After successfully creating records using the **POST** operation, the next step is to retrieve those records from the backend and display them in the application.
+
+Angular uses the **HTTP GET** method to fetch data from a server.
+
+---
+
+# Employee Management System Progress
+
+```
+✅ Reactive Forms Completed
+
+✅ JSON Server Connected
+
+✅ CREATE (POST)
+
+🟢 Current Chapter → READ (GET)
+
+⬜ UPDATE (PUT)
+
+⬜ DELETE (DELETE)
+```
+
+---
+
+# What is GET?
+
+GET is an HTTP method used to retrieve data from a server.
+
+Unlike POST,
+
+GET does not create or modify data.
+
+It simply requests the existing records.
+
+---
+
+# Why do we need GET?
+
+Suppose five students are already stored in JSON Server.
+
+When the application starts,
+
+Angular must fetch those records and display them.
+
+Without GET,
+
+the data exists in the backend,
+
+but users cannot see it.
+
+---
+
+# Project Workflow
+
+```
+Application Starts
+
+↓
+
+ngOnInit()
+
+↓
+
+getUser()
+
+↓
+
+CRUD Service
+
+↓
+
+HttpClient.get()
+
+↓
+
+JSON Server
+
+↓
+
+Returns Student List
+
+↓
+
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+Store Data
+
+↓
+
+Display in HTML Table
+```
+
+---
+
+# Step 1 - Service
+
+## crud.service.ts
+
+```ts
+getStudent(){
+
+return this.http.get(
+
+this.url
+
+);
+
+}
+```
+
+---
+
+# Understanding the Service
+
+### getStudent()
+
+```ts
+getStudent()
+```
+
+This method sends an HTTP GET request to JSON Server.
+
+---
+
+### HttpClient.get()
+
+```ts
+return this.http.get(
+
+this.url
+
+);
+```
+
+Angular requests all student records available at the API endpoint.
+
+The method returns an **Observable**.
+
+---
+
+# Step 2 - Component
+
+## task.component.ts
+
+```ts
+studentData:any;
+
+getUser(){
+
+this.crud.getStudent().subscribe((res)=>{
+
+this.studentData = res;
+
+console.log(this.studentData);
+
+});
+
+}
+```
+
+---
+
+# Understanding the Component
+
+### studentData
+
+```ts
+studentData:any;
+```
+
+Stores the student records received from the backend.
+
+---
+
+### Calling the Service
+
+```ts
+this.crud.getStudent()
+```
+
+Requests all available student records.
+
+---
+
+### subscribe()
+
+```ts
+.subscribe((res)=>{
+
+this.studentData = res;
+
+});
+```
+
+The Observable returns the response from JSON Server.
+
+Angular stores that response inside:
+
+```ts
+studentData
+```
+
+---
+
+# Step 3 - Automatically Load Data
+
+## ngOnInit()
+
+```ts
+ngOnInit(){
+
+this.getUser();
+
+}
+```
+
+---
+
+# Why ngOnInit()?
+
+When the component loads,
+
+Angular automatically calls
+
+```ts
+ngOnInit()
+```
+
+This ensures that the table is populated immediately after opening the page.
+
+---
+
+# Step 4 - HTML
+
+## task.component.html
+
+```html
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+</tr>
+
+<tr *ngFor="let student of studentData">
+
+<td>{{student.id}}</td>
+
+<td>{{student.name}}</td>
+
+<td>{{student.email}}</td>
+
+</tr>
+
+</table>
+```
+
+---
+
+# Understanding the HTML
+
+### *ngFor
+
+```html
+*ngFor="let student of studentData"
+```
+
+Loops through every student object received from JSON Server.
+
+Each iteration creates one table row.
+
+---
+
+### Interpolation
+
+```html
+{{student.name}}
+```
+
+Displays the value of each property.
+
+---
+
+# Sample Response
+
+```json
+[
+{
+"id":1,
+"name":"Dhikshanth",
+"email":"abc@gmail.com"
+},
+{
+"id":2,
+"name":"Rahul",
+"email":"rahul@gmail.com"
+}
+]
+```
+
+Angular stores this array inside:
+
+```ts
+studentData
+```
+
+---
+
+# Data Flow
+
+```
+JSON Server
+
+↓
+
+Array of Students
+
+↓
+
+HttpClient.get()
+
+↓
+
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+studentData
+
+↓
+
+*ngFor
+
+↓
+
+HTML Table
+```
+
+---
+
+# Complete Execution Flow
+
+```
+Application Starts
+
+↓
+
+ngOnInit()
+
+↓
+
+getUser()
+
+↓
+
+CrudService
+
+↓
+
+HttpClient.get()
+
+↓
+
+JSON Server
+
+↓
+
+Response Received
+
+↓
+
+subscribe()
+
+↓
+
+studentData
+
+↓
+
+Angular Change Detection
+
+↓
+
+HTML Updated
+```
+
+---
+
+# Real Concept I Learned
+
+Initially,
+
+I thought calling:
+
+```ts
+this.crud.getStudent();
+```
+
+would automatically return the data.
+
+Later I understood that Angular returns an **Observable**.
+
+The actual response is received only after calling:
+
+```ts
+.subscribe()
+```
+
+Without `subscribe()`,
+
+the GET request is never executed.
+
+---
+
+# Common Mistakes
+
+## ❌ Forgetting subscribe()
+
+Incorrect
+
+```ts
+this.studentData = this.crud.getStudent();
+```
+
+Here,
+
+`studentData` stores the Observable,
+
+not the actual data.
+
+---
+
+Correct
+
+```ts
+this.crud.getStudent().subscribe((res)=>{
+
+this.studentData = res;
+
+});
+```
+
+---
+
+## ❌ Forgetting ngOnInit()
+
+If `getUser()` is never called,
+
+the table remains empty even though data exists in JSON Server.
+
+---
+
+## ❌ Using the wrong variable in HTML
+
+Incorrect
+
+```html
+*ngFor="let student of users"
+```
+
+when the component stores data in:
+
+```ts
+studentData
+```
+
+Always use the correct variable name.
+
+---
+
+# 🧠 How I Remember GET
+
+```
+GET
+
+↓
+
+Retrieve
+
+↓
+
+Read Existing Data
+
+↓
+
+No New Record
+
+↓
+
+No Modification
+```
+
+Whenever I hear **GET**,
+
+I immediately think:
+
+**"Fetch existing records."**
+
+---
+
+# GET vs POST
+
+| POST | GET |
+|------|-----|
+| Creates new data | Retrieves existing data |
+| Uses `http.post()` | Uses `http.get()` |
+| Sends data to server | Requests data from server |
+| Database changes | Database remains unchanged |
+
+---
+
+# 🎯 Interview Nuggets
+
+✔ GET is used to retrieve data.
+
+✔ `HttpClient.get()` returns an Observable.
+
+✔ `subscribe()` is required to receive the response.
+
+✔ `ngOnInit()` is commonly used to load data automatically.
+
+✔ `*ngFor` is used to display multiple records.
+
+---
+
+# 📌 Key Takeaways
+
+- GET retrieves existing records.
+- Angular uses `HttpClient.get()` for reading data.
+- Responses are received through Observables.
+- Store the response inside a component variable.
+- Use `*ngFor` to display records in the UI.
+- Call `getUser()` inside `ngOnInit()` to load data automatically.
+
+---
+
+## Next Chapter
+
+# 13.7 UPDATE Operation (PUT)
+
+In the next chapter, we'll learn how to load an existing student into the form, edit the details, and update the record using an **HTTP PUT** request.
+
+# 13.7 UPDATE Operation (PUT)
+
+The **UPDATE** operation is used to modify an existing record stored in the backend.
+
+Angular performs this operation using the **HTTP PUT** method.
+
+Unlike POST, which creates a new record, PUT updates an existing record using its unique ID.
+
+---
+
+# Employee Management System Progress
+
+```
+✅ Reactive Forms Completed
+
+✅ JSON Server Connected
+
+✅ CREATE (POST)
+
+✅ READ (GET)
+
+🟢 Current Chapter → UPDATE (PUT)
+
+⬜ DELETE (DELETE)
+```
+
+---
+
+# Files Used
+
+```
+📄 app.module.ts
+
+📄 crud.service.ts
+
+📄 task.component.ts
+
+📄 task.component.html
+
+📄 db.json
+```
+
+---
+
+# What is PUT?
+
+PUT is an HTTP method used to update an existing record.
+
+Instead of creating a new record,
+
+PUT replaces the existing record using its ID.
+
+---
+
+# Why do we need PUT?
+
+Suppose a student's email was entered incorrectly.
+
+```
+Before
+
+Name : Dhikshanth
+
+Email : abc@gamil.com
+```
+
+The user clicks **Edit**, corrects the email and submits the form.
+
+Angular sends a PUT request.
+
+```
+After
+
+Name : Dhikshanth
+
+Email : abc@gmail.com
+```
+
+The record is updated without creating a duplicate.
+
+---
+
+# Project Workflow
+
+```
+User
+
+↓
+
+Clicks Edit
+
+↓
+
+Load Selected Record
+
+↓
+
+patchValue()
+
+↓
+
+rowId Assigned
+
+↓
+
+User Updates Data
+
+↓
+
+Submit
+
+↓
+
+updateStudent()
+
+↓
+
+HTTP PUT
+
+↓
+
+JSON Server
+
+↓
+
+Updated Record
+
+↓
+
+Refresh Table
+
+↓
+
+Reset Form
+```
+
+---
+
+# Step 1 - Service
+
+## crud.service.ts
+
+```ts
+updateStudent(data:any,id:any){
+
+return this.http.put(
+
+`${this.url}/${id}`,
+
+data
+
+);
+
+}
+```
+
+---
+
+# Understanding the Service
+
+### updateStudent()
+
+```ts
+updateStudent(data,id)
+```
+
+Receives:
+
+- Updated Form Data
+- Student ID
+
+---
+
+### PUT Request
+
+```ts
+return this.http.put(
+
+`${this.url}/${id}`,
+
+data
+
+);
+```
+
+Angular sends the updated student object to JSON Server.
+
+The record with the matching ID is replaced.
+
+---
+
+# Step 2 - Edit Button
+
+## task.component.html
+
+```html
+<button
+
+(click)="edit(student)">
+
+Edit
+
+</button>
+```
+
+When the user clicks **Edit**,
+
+Angular sends the selected student object to the component.
+
+---
+
+# Step 3 - Edit Function
+
+## task.component.ts
+
+```ts
+rowId:any;
+
+edit(student:any){
+
+this.rowId = student.id;
+
+this.taskform.patchValue(student);
+
+}
+```
+
+---
+
+# Understanding the Edit Function
+
+### Store the ID
+
+```ts
+this.rowId = student.id;
+```
+
+Stores the selected student's ID.
+
+This tells Angular which record needs to be updated.
+
+---
+
+### patchValue()
+
+```ts
+this.taskform.patchValue(student);
+```
+
+Loads the selected student's details into the form.
+
+The user can now edit the existing values.
+
+---
+
+# Step 4 - Submit Function
+
+```ts
+submit(){
+
+if(this.taskform.valid){
+
+if(this.rowId){
+
+this.crud.updateStudent(
+
+this.taskform.value,
+
+this.rowId
+
+).subscribe((res)=>{
+
+alert("Data Updated");
+
+this.getUser();
+
+this.taskform.reset();
+
+this.rowId = null;
+
+});
+
+}
+
+}
+
+}
+```
+
+---
+
+# Understanding the Submit Logic
+
+### Check Form Validation
+
+```ts
+if(this.taskform.valid)
+```
+
+Only valid data is allowed to update the record.
+
+---
+
+### Check rowId
+
+```ts
+if(this.rowId)
+```
+
+This condition decides whether Angular should perform:
+
+```
+POST
+
+or
+
+PUT
+```
+
+If `rowId` exists,
+
+Angular performs **PUT**.
+
+---
+
+### Call Service
+
+```ts
+this.crud.updateStudent(
+
+this.taskform.value,
+
+this.rowId
+
+)
+```
+
+The updated form values and the selected ID are sent to the service.
+
+---
+
+### subscribe()
+
+```ts
+.subscribe((res)=>{
+
+...
+});
+```
+
+The PUT request executes only after subscribing.
+
+---
+
+### Refresh Data
+
+```ts
+this.getUser();
+```
+
+Reloads the latest student list.
+
+The updated record appears immediately.
+
+---
+
+### Reset Form
+
+```ts
+this.taskform.reset();
+```
+
+Clears the form after updating.
+
+---
+
+### Exit Edit Mode
+
+```ts
+this.rowId = null;
+```
+
+This is one of the most important lines.
+
+Without resetting `rowId`,
+
+future submissions will continue performing UPDATE instead of CREATE.
+
+---
+
+# Execution Flow
+
+```
+Click Edit
+
+↓
+
+edit(student)
+
+↓
+
+rowId = student.id
+
+↓
+
+patchValue(student)
+
+↓
+
+User Updates Form
+
+↓
+
+Submit
+
+↓
+
+rowId Exists?
+
+↓
+
+Yes
+
+↓
+
+updateStudent()
+
+↓
+
+HttpClient.put()
+
+↓
+
+JSON Server
+
+↓
+
+Updated Successfully
+
+↓
+
+subscribe()
+
+↓
+
+getUser()
+
+↓
+
+Reset Form
+
+↓
+
+rowId = null
+```
+
+---
+
+# Before and After
+
+### Before Update
+
+```json
+{
+"id":3,
+"name":"Dhikshanth",
+"email":"abc@gamil.com"
+}
+```
+
+---
+
+### After Update
+
+```json
+{
+"id":3,
+"name":"Dhikshanth",
+"email":"abc@gmail.com"
+}
+```
+
+Notice that only the data changes.
+
+The ID remains the same.
+
+---
+
+# Common Mistakes
+
+## ❌ Forgetting rowId
+
+Without storing the ID,
+
+Angular does not know which record should be updated.
+
+---
+
+## ❌ Forgetting patchValue()
+
+The form remains empty,
+
+making editing impossible.
+
+---
+
+## ❌ Forgetting subscribe()
+
+The PUT request is never executed.
+
+---
+
+## ❌ Forgetting getUser()
+
+The backend updates successfully,
+
+but the latest data is not displayed until the page is refreshed.
+
+---
+
+## ❌ Forgetting
+
+```ts
+this.rowId = null;
+```
+
+The application remains in Edit Mode.
+
+Every future submission performs UPDATE instead of CREATE.
+
+---
+
+# ⚠️ Real Error I Faced
+
+While learning CRUD,
+
+I encountered:
+
+```
+404 Not Found
+```
+
+### Reason
+
+The record ID was not correctly passed in the PUT URL.
+
+Incorrect URL:
+
+```
+http://localhost:3000/user
+```
+
+Correct URL:
+
+```
+http://localhost:3000/user/3
+```
+
+Always append the record ID while performing a PUT request.
+
+---
+
+# 🧠 How I Remember PUT
+
+```
+User Clicks Edit
+
+↓
+
+Load Existing Data
+
+↓
+
+Modify
+
+↓
+
+Replace Existing Record
+
+↓
+
+Same ID
+
+↓
+
+Updated Data
+```
+
+Whenever I hear **PUT**,
+
+I immediately think:
+
+**"Replace an existing record."**
+
+---
+
+# POST vs PUT
+
+| POST | PUT |
+|------|-----|
+| Creates new record | Updates existing record |
+| Generates new ID | Uses existing ID |
+| addStudent() | updateStudent() |
+| No rowId | Requires rowId |
+
+---
+
+# 🎯 Interview Nuggets
+
+✔ PUT updates existing records.
+
+✔ Record ID is mandatory.
+
+✔ `patchValue()` loads existing data into the form.
+
+✔ `rowId` decides whether to perform POST or PUT.
+
+✔ Reset `rowId` after updating.
+
+✔ Always refresh the table after a successful update.
+
+---
+
+# 📌 Key Takeaways
+
+- PUT modifies existing records.
+- Store the selected record ID before updating.
+- Use `patchValue()` to load existing values.
+- Execute the request using `subscribe()`.
+- Refresh the table after updating.
+- Reset both the form and `rowId` after a successful update.
+
+---
+
+## Next Chapter
+
+# 13.8 DELETE Operation (DELETE)
+
+In the next chapter, we'll learn how to remove records from JSON Server using the **HTTP DELETE** method and refresh the table automatically.
+
+# 13.8 DELETE Operation (DELETE)
+
+The **DELETE** operation is used to remove an existing record from the backend.
+
+Angular performs this operation using the **HTTP DELETE** method.
+
+Unlike POST and PUT, DELETE permanently removes the selected record from the database.
+
+---
+
+# Employee Management System Progress
+
+```
+✅ Reactive Forms Completed
+
+✅ JSON Server Connected
+
+✅ CREATE (POST)
+
+✅ READ (GET)
+
+✅ UPDATE (PUT)
+
+🟢 Current Chapter → DELETE (DELETE)
+```
+
+---
+
+# Files Used
+
+```
+📄 app.module.ts
+
+📄 crud.service.ts
+
+📄 task.component.ts
+
+📄 task.component.html
+
+📄 db.json
+```
+
+---
+
+# What is DELETE?
+
+DELETE is an HTTP method used to remove an existing record from the backend.
+
+The record is identified using its unique ID.
+
+Once deleted,
+
+that record will no longer exist in JSON Server.
+
+---
+
+# Why do we need DELETE?
+
+Suppose an employee resigns from a company.
+
+The employee details should no longer appear in the Employee Management System.
+
+Instead of editing the record,
+
+we remove it completely using the DELETE operation.
+
+---
+
+# Project Workflow
+
+```
+User
+
+↓
+
+Clicks Delete
+
+↓
+
+Record ID Sent
+
+↓
+
+deleteStudent()
+
+↓
+
+HTTP DELETE
+
+↓
+
+JSON Server
+
+↓
+
+Record Removed
+
+↓
+
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+Refresh Table
+```
+
+---
+
+# Step 1 - Service
+
+## crud.service.ts
+
+```ts
+deleteStudent(id:any){
+
+return this.http.delete(
+
+`${this.url}/${id}`
+
+);
+
+}
+```
+
+---
+
+# Understanding the Service
+
+### deleteStudent()
+
+```ts
+deleteStudent(id)
+```
+
+Receives the ID of the record to be deleted.
+
+---
+
+### DELETE Request
+
+```ts
+return this.http.delete(
+
+`${this.url}/${id}`
+
+);
+```
+
+Angular sends a DELETE request to JSON Server.
+
+The record matching the given ID is removed.
+
+---
+
+# Step 2 - HTML
+
+## task.component.html
+
+```html
+<button
+
+(click)="delete(student.id)">
+
+Delete
+
+</button>
+```
+
+When the user clicks the Delete button,
+
+Angular sends the selected student's ID to the component.
+
+---
+
+# Step 3 - Component
+
+## task.component.ts
+
+```ts
+delete(id:any){
+
+this.crud.deleteStudent(id).subscribe((res)=>{
+
+alert("Data Deleted Successfully");
+
+this.getUser();
+
+});
+
+}
+```
+
+---
+
+# Understanding the Component
+
+### Receive the ID
+
+```ts
+delete(id:any)
+```
+
+Receives the selected record ID.
+
+---
+
+### Call Service
+
+```ts
+this.crud.deleteStudent(id)
+```
+
+Calls the Service method to delete the selected record.
+
+---
+
+### subscribe()
+
+```ts
+.subscribe((res)=>{
+
+...
+});
+```
+
+Executes the DELETE request.
+
+Without `subscribe()`,
+
+the record will never be deleted.
+
+---
+
+### Refresh the Table
+
+```ts
+this.getUser();
+```
+
+Loads the latest data after deletion.
+
+The deleted record immediately disappears from the table.
+
+---
+
+# Complete Execution Flow
+
+```
+User Clicks Delete
+
+↓
+
+delete(id)
+
+↓
+
+CrudService
+
+↓
+
+HttpClient.delete()
+
+↓
+
+JSON Server
+
+↓
+
+Record Deleted
+
+↓
+
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+getUser()
+
+↓
+
+Updated Table
+```
+
+---
+
+# Before DELETE
+
+| ID | Name | Email |
+|----|------|-------|
+| 1 | Rahul | rahul@gmail.com |
+| 2 | Dhikshanth | abc@gmail.com |
+| 3 | Arun | arun@gmail.com |
+
+---
+
+# After DELETE (ID = 2)
+
+| ID | Name | Email |
+|----|------|-------|
+| 1 | Rahul | rahul@gmail.com |
+| 3 | Arun | arun@gmail.com |
+
+Notice that the record with ID **2** has been removed.
+
+---
+
+# Common Mistakes
+
+## ❌ Forgetting the ID
+
+Incorrect
+
+```ts
+this.http.delete(this.url);
+```
+
+Angular does not know which record should be deleted.
+
+---
+
+Correct
+
+```ts
+this.http.delete(
+
+`${this.url}/${id}`
+
+);
+```
+
+---
+
+## ❌ Forgetting subscribe()
+
+Incorrect
+
+```ts
+this.crud.deleteStudent(id);
+```
+
+The DELETE request is never executed.
+
+---
+
+## ❌ Forgetting getUser()
+
+The record is deleted in JSON Server,
+
+but the UI still displays the old data until the page is refreshed.
+
+---
+
+## ❌ Passing the Entire Object Instead of ID
+
+Incorrect
+
+```ts
+delete(student)
+```
+
+If the Service expects only the ID,
+
+pass:
+
+```ts
+delete(student.id)
+```
+
+This keeps the code simple and avoids unnecessary data transfer.
+
+---
+
+# ⚠️ Real Concept I Learned
+
+Initially,
+
+I thought removing a row from the HTML table was enough.
+
+Later I understood that deleting a row from the UI only removes it visually.
+
+The actual data still exists in JSON Server.
+
+To permanently remove the record,
+
+Angular must send an **HTTP DELETE** request to the backend.
+
+---
+
+# 🧠 How I Remember DELETE
+
+```
+Delete Button
+
+↓
+
+Record ID
+
+↓
+
+DELETE Request
+
+↓
+
+Remove Record
+
+↓
+
+Refresh Table
+```
+
+Whenever I hear **DELETE**,
+
+I immediately think:
+
+**"Remove an existing record permanently."**
+
+---
+
+# CRUD Summary
+
+| Operation | HTTP Method | Purpose |
+|-----------|-------------|---------|
+| CREATE | POST | Add a new record |
+| READ | GET | Retrieve existing records |
+| UPDATE | PUT | Modify an existing record |
+| DELETE | DELETE | Remove an existing record |
+
+---
+
+# Complete CRUD Workflow
+
+```
+Create Employee
+
+↓
+
+POST
+
+↓
+
+Read Employees
+
+↓
+
+GET
+
+↓
+
+Edit Employee
+
+↓
+
+PUT
+
+↓
+
+Delete Employee
+
+↓
+
+DELETE
+
+↓
+
+Complete Employee Management System
+```
+
+---
+
+# 🎯 Interview Nuggets
+
+✔ DELETE removes existing records.
+
+✔ Every DELETE request requires the record ID.
+
+✔ `HttpClient.delete()` returns an Observable.
+
+✔ `subscribe()` executes the request.
+
+✔ Refresh the UI after successful deletion.
+
+✔ DELETE permanently removes data from the backend.
+
+---
+
+# 📌 Key Takeaways
+
+- DELETE removes records from the backend.
+- Always pass the record ID.
+- Execute the request using `subscribe()`.
+- Refresh the table after deletion.
+- DELETE completes the CRUD cycle.
+
+---
+
+# 🎉 CRUD Operations Completed
+
+```
+Employee Management System
+
+✅ Reactive Forms
+
+✅ JSON Server
+
+✅ Service
+
+✅ HttpClient
+
+✅ POST
+
+✅ GET
+
+✅ PUT
+
+✅ DELETE
+
+🎯 Complete CRUD Application Built Successfully
+```
+
+---
+
+## Next Chapter
+
+# 13.9 Complete CRUD Application Flow
+
+In the next chapter, we'll connect all four operations together and understand how the complete Employee Management System works from user interaction to backend response.
+
+# 13.9 Complete CRUD Application Flow
+
+In the previous chapters, we learned each CRUD operation individually.
+
+Now, let's understand how all these operations work together to build a complete Employee Management System.
+
+This chapter connects every concept learned so far into one complete application.
+
+---
+
+# Employee Management System Progress
+
+```
+✅ Reactive Forms
+
+✅ JSON Server
+
+✅ Service
+
+✅ HttpClient
+
+✅ POST
+
+✅ GET
+
+✅ PUT
+
+✅ DELETE
+
+🟢 Current Chapter → Complete CRUD Flow
+```
+
+---
+
+# Project Overview
+
+Our Employee Management System allows users to:
+
+- Add a new employee
+- View all employees
+- Edit employee details
+- Delete employees
+
+All these operations communicate with JSON Server through Angular's HttpClient.
+
+---
+
+# Project Folder Structure
+
+```
+src
+
+└── app
+
+    ├── task
+
+    │     ├── task.component.ts
+
+    │     ├── task.component.html
+
+    │     └── task.component.css
+
+    │
+
+    ├── service
+
+    │     └── crud.service.ts
+
+    │
+
+    ├── app.module.ts
+
+    │
+
+    └── app-routing.module.ts
+```
+
+---
+
+# Complete Architecture
+
+```
+User
+
+↓
+
+Angular Component
+
+↓
+
+CRUD Service
+
+↓
+
+HttpClient
+
+↓
+
+HTTP Request
+
+↓
+
+JSON Server
+
+↓
+
+db.json
+
+↓
+
+HTTP Response
+
+↓
+
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+Angular Component
+
+↓
+
+HTML
+
+↓
+
+User
+```
+
+---
+
+# Complete CRUD Lifecycle
+
+```
+Application Starts
+
+↓
+
+ngOnInit()
+
+↓
+
+GET
+
+↓
+
+Display Employees
+
+↓
+
+User Adds Employee
+
+↓
+
+POST
+
+↓
+
+Refresh Table
+
+↓
+
+User Clicks Edit
+
+↓
+
+patchValue()
+
+↓
+
+PUT
+
+↓
+
+Refresh Table
+
+↓
+
+User Clicks Delete
+
+↓
+
+DELETE
+
+↓
+
+Refresh Table
+```
+
+---
+
+# Flow 1 - Application Loading
+
+```
+Application Starts
+
+↓
+
+Angular Creates Component
+
+↓
+
+ngOnInit()
+
+↓
+
+getUser()
+
+↓
+
+GET Request
+
+↓
+
+JSON Server
+
+↓
+
+Response
+
+↓
+
+studentData
+
+↓
+
+*ngFor
+
+↓
+
+Table Displayed
+```
+
+Purpose:
+
+Display all available records when the application loads.
+
+---
+
+# Flow 2 - Adding a New Employee
+
+```
+Fill Form
+
+↓
+
+Submit
+
+↓
+
+Validation
+
+↓
+
+POST
+
+↓
+
+JSON Server
+
+↓
+
+New Employee Created
+
+↓
+
+GET
+
+↓
+
+Updated Table
+
+↓
+
+Reset Form
+```
+
+Purpose:
+
+Create a new employee record.
+
+---
+
+# Flow 3 - Editing an Employee
+
+```
+Click Edit
+
+↓
+
+Store rowId
+
+↓
+
+patchValue()
+
+↓
+
+User Updates Data
+
+↓
+
+Submit
+
+↓
+
+PUT
+
+↓
+
+JSON Server
+
+↓
+
+Employee Updated
+
+↓
+
+GET
+
+↓
+
+Updated Table
+
+↓
+
+Reset Form
+
+↓
+
+rowId = null
+```
+
+Purpose:
+
+Modify an existing employee.
+
+---
+
+# Flow 4 - Deleting an Employee
+
+```
+Click Delete
+
+↓
+
+Pass ID
+
+↓
+
+DELETE
+
+↓
+
+JSON Server
+
+↓
+
+Record Removed
+
+↓
+
+GET
+
+↓
+
+Updated Table
+```
+
+Purpose:
+
+Remove unwanted records permanently.
+
+---
+
+# Data Flow Inside Angular
+
+```
+HTML
+
+↓
+
+Component
+
+↓
+
+Service
+
+↓
+
+HttpClient
+
+↓
+
+Backend
+
+↓
+
+HttpClient
+
+↓
+
+Service
+
+↓
+
+Component
+
+↓
+
+HTML
+```
+
+Notice that every request follows the same path.
+
+---
+
+# Role of Each File
+
+## app.module.ts
+
+Responsible for importing:
+
+- HttpClientModule
+- ReactiveFormsModule
+
+Without these modules,
+
+HTTP communication and Reactive Forms will not work.
+
+---
+
+## crud.service.ts
+
+Responsible for:
+
+- POST
+- GET
+- PUT
+- DELETE
+
+Business logic is separated from the component.
+
+---
+
+## task.component.ts
+
+Responsible for:
+
+- Form Validation
+- Calling Service Methods
+- Receiving Responses
+- Updating UI Data
+
+Acts as the bridge between HTML and Service.
+
+---
+
+## task.component.html
+
+Responsible for:
+
+- Displaying the Form
+- Displaying the Table
+- Handling User Events
+
+---
+
+# CRUD Request Flow
+
+## CREATE
+
+```
+Submit
+
+↓
+
+addStudent()
+
+↓
+
+POST
+
+↓
+
+Database
+
+↓
+
+Response
+```
+
+---
+
+## READ
+
+```
+ngOnInit()
+
+↓
+
+getStudent()
+
+↓
+
+GET
+
+↓
+
+Display Table
+```
+
+---
+
+## UPDATE
+
+```
+Edit
+
+↓
+
+patchValue()
+
+↓
+
+Submit
+
+↓
+
+PUT
+
+↓
+
+Database Updated
+```
+
+---
+
+## DELETE
+
+```
+Delete Button
+
+↓
+
+DELETE
+
+↓
+
+Database
+
+↓
+
+Refresh Table
+```
+
+---
+
+# Observable Flow
+
+Every CRUD operation follows the same pattern.
+
+```
+Component
+
+↓
+
+Service
+
+↓
+
+HttpClient
+
+↓
+
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+Response
+
+↓
+
+Update UI
+```
+
+This is one of the most important concepts in Angular.
+
+---
+
+# Real Concepts I Learned
+
+While building this project,
+
+I understood that the component never communicates directly with JSON Server.
+
+Instead,
+
+the request always follows this path:
+
+```
+Component
+
+↓
+
+Service
+
+↓
+
+HttpClient
+
+↓
+
+Backend
+```
+
+This separation makes the application easier to maintain and reuse.
+
+---
+
+Another important concept I learned was that every HTTP request returns an Observable.
+
+Without calling:
+
+```ts
+.subscribe()
+```
+
+the request is never executed.
+
+---
+
+# Complete CRUD Summary
+
+| Operation | Method | Purpose |
+|-----------|---------|----------|
+| CREATE | POST | Add New Employee |
+| READ | GET | Display Employees |
+| UPDATE | PUT | Edit Existing Employee |
+| DELETE | DELETE | Remove Employee |
+
+---
+
+# Complete Learning Journey
+
+```
+Reactive Forms
+
+↓
+
+JSON Server
+
+↓
+
+HttpClient
+
+↓
+
+Service
+
+↓
+
+POST
+
+↓
+
+GET
+
+↓
+
+PUT
+
+↓
+
+DELETE
+
+↓
+
+Complete CRUD Application
+```
+
+---
+
+# 🧠 How I Remember CRUD
+
+```
+User
+
+↓
+
+Create
+
+↓
+
+Read
+
+↓
+
+Update
+
+↓
+
+Delete
+
+↓
+
+Application Always Refreshes
+
+↓
+
+Latest Data Displayed
+```
+
+Whenever I build any CRUD application,
+
+I always follow this sequence.
+
+---
+
+# 🎯 Interview Nuggets
+
+✔ CRUD stands for Create, Read, Update and Delete.
+
+✔ Angular communicates with APIs using HttpClient.
+
+✔ Services separate business logic from components.
+
+✔ Every HTTP request returns an Observable.
+
+✔ subscribe() executes the HTTP request.
+
+✔ GET is usually called inside ngOnInit().
+
+✔ Refresh the table after every successful CRUD operation.
+
+---
+
+# 📌 Key Takeaways
+
+- CRUD applications are built using four HTTP methods.
+- Components communicate with Services, not directly with the backend.
+- Services use HttpClient to perform HTTP operations.
+- Every request returns an Observable.
+- The UI should always be refreshed after successful operations.
+- Combining Reactive Forms, HttpClient, Services and JSON Server results in a complete Angular CRUD application.
+
+---
+
+# 14. Routing
+
+Angular Routing allows users to navigate between different components without refreshing the entire webpage.
+
+Routing makes an Angular application behave like a Single Page Application (SPA).
+
+Instead of loading a new HTML page every time,
+
+Angular simply replaces the component inside the **router-outlet**.
+
+---
+
+# Why do we need Routing?
+
+Suppose our application contains:
+
+```
+Home
+
+Employee
+
+About
+
+Contact
+```
+
+Without Routing,
+
+all components would have to be displayed on a single page.
+
+With Routing,
+
+each component gets its own URL.
+
+Example:
+
+```
+localhost:4200/home
+
+localhost:4200/employee
+
+localhost:4200/about
+
+localhost:4200/contact
+```
+
+---
+
+# How Routing Works
+
+```
+User
+
+↓
+
+Clicks Navigation Link
+
+↓
+
+Angular Router
+
+↓
+
+Routes Array
+
+↓
+
+Find Matching Path
+
+↓
+
+Load Component
+
+↓
+
+router-outlet
+
+↓
+
+Component Displayed
+```
+
+---
+
+# Project Structure
+
+```
+src
+
+└── app
+
+    ├── home
+
+    │      ├── home.component.ts
+
+    │      └── home.component.html
+
+    │
+
+    ├── employee
+
+    │      ├── employee.component.ts
+
+    │      └── employee.component.html
+
+    │
+
+    ├── about
+
+    │      ├── about.component.ts
+
+    │      └── about.component.html
+
+    │
+
+    ├── contact
+
+    │      ├── contact.component.ts
+
+    │      └── contact.component.html
+
+    │
+
+    ├── app-routing.module.ts
+
+    ├── app.module.ts
+
+    ├── app.component.ts
+
+    └── app.component.html
+```
+
+---
+
+# Step 1 - Create Components
+
+```
+ng g c home
+
+ng g c employee
+
+ng g c about
+
+ng g c contact
+```
+
+Angular creates:
+
+```
+home.component.ts
+
+home.component.html
+
+home.component.css
+
+home.component.spec.ts
+```
+
+for every component.
+
+---
+
+# Step 2 - Configure Routes
+
+## app-routing.module.ts
+
+```ts
+import { NgModule } from '@angular/core';
+
+import { RouterModule, Routes } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
+
+import { EmployeeComponent } from './employee/employee.component';
+
+import { AboutComponent } from './about/about.component';
+
+import { ContactComponent } from './contact/contact.component';
+
+const routes: Routes = [
+
+{
+
+path:'',
+
+redirectTo:'home',
+
+pathMatch:'full'
+
+},
+
+{
+
+path:'home',
+
+component:HomeComponent
+
+},
+
+{
+
+path:'employee',
+
+component:EmployeeComponent
+
+},
+
+{
+
+path:'about',
+
+component:AboutComponent
+
+},
+
+{
+
+path:'contact',
+
+component:ContactComponent
+
+}
+
+];
+
+@NgModule({
+
+imports:[
+
+RouterModule.forRoot(routes)
+
+],
+
+exports:[
+
+RouterModule
+
+]
+
+})
+
+export class AppRoutingModule{}
+```
+
+---
+
+# Understanding app-routing.module.ts
+
+## Routes
+
+```ts
+const routes: Routes=[]
+```
+
+Stores all application routes.
+
+---
+
+## path
+
+```ts
+path:'home'
+```
+
+Represents the URL.
+
+Example
+
+```
+localhost:4200/home
+```
+
+---
+
+## component
+
+```ts
+component:HomeComponent
+```
+
+Specifies which component should be displayed.
+
+---
+
+## redirectTo
+
+```ts
+redirectTo:'home'
+```
+
+When the application starts,
+
+Angular redirects the user to:
+
+```
+localhost:4200/home
+```
+
+---
+
+## pathMatch:'full'
+
+Ensures Angular matches the complete URL before redirecting.
+
+---
+
+## RouterModule.forRoot()
+
+```ts
+RouterModule.forRoot(routes)
+```
+
+Registers all routes in the application.
+
+---
+
+## exports
+
+```ts
+exports:[RouterModule]
+```
+
+Makes routing available throughout the application.
+
+---
+
+# Step 3 - Import Routing Module
+
+## app.module.ts
+
+```ts
+import { AppRoutingModule } from './app-routing.module';
+
+@NgModule({
+
+declarations:[
+
+AppComponent,
+
+HomeComponent,
+
+EmployeeComponent,
+
+AboutComponent,
+
+ContactComponent
+
+],
+
+imports:[
+
+BrowserModule,
+
+AppRoutingModule
+
+],
+
+bootstrap:[
+
+AppComponent
+
+]
+
+})
+
+export class AppModule{}
+```
+
+---
+
+# Why Import AppRoutingModule?
+
+Without importing
+
+```ts
+AppRoutingModule
+```
+
+Angular will not recognize any routes.
+
+Navigation will not work.
+
+---
+
+# Execution Flow
+
+```
+Application Starts
+
+↓
+
+AppModule
+
+↓
+
+AppRoutingModule
+
+↓
+
+Routes Registered
+
+↓
+
+User Opens URL
+
+↓
+
+Angular Searches Routes[]
+
+↓
+
+Matching Component Found
+
+↓
+
+Component Ready
+```
+
+---
+
+## Next Chapter
+
+We'll learn:
+
+- routerLink
+- router-outlet
+- Navigation
+- app.component.html
+- Complete HTML implementation
+- Internal Routing Flow
+
+# 14.2 routerLink & router-outlet
+
+After configuring the routes,
+
+Angular needs a way to navigate between different components.
+
+This is achieved using:
+
+- `routerLink`
+- `router-outlet`
+
+These two directives work together to provide navigation.
+
+---
+
+# What is routerLink?
+
+`routerLink` is an Angular directive used to navigate from one component to another.
+
+Instead of refreshing the webpage,
+
+Angular changes only the displayed component.
+
+---
+
+# Syntax
+
+```html
+<a routerLink="/home">Home</a>
+```
+
+When clicked,
+
+Angular navigates to
+
+```
+localhost:4200/home
+```
+
+---
+
+# Multiple routerLinks
+
+## app.component.html
+
+```html
+<nav>
+
+<a routerLink="/home">Home</a>
+
+<a routerLink="/employee">Employee</a>
+
+<a routerLink="/about">About</a>
+
+<a routerLink="/contact">Contact</a>
+
+</nav>
+
+<hr>
+
+<router-outlet></router-outlet>
+```
+
+---
+
+# Understanding app.component.html
+
+## Navigation Bar
+
+```html
+<nav>
+
+...
+
+</nav>
+```
+
+Contains all navigation links.
+
+---
+
+## routerLink
+
+```html
+routerLink="/home"
+```
+
+Navigates to
+
+```
+HomeComponent
+```
+
+---
+
+```html
+routerLink="/employee"
+```
+
+Navigates to
+
+```
+EmployeeComponent
+```
+
+---
+
+```html
+routerLink="/about"
+```
+
+Navigates to
+
+```
+AboutComponent
+```
+
+---
+
+```html
+routerLink="/contact"
+```
+
+Navigates to
+
+```
+ContactComponent
+```
+
+---
+
+# What is router-outlet?
+
+`router-outlet` is a placeholder provided by Angular.
+
+It tells Angular where the routed component should be displayed.
+
+---
+
+# Syntax
+
+```html
+<router-outlet>
+
+</router-outlet>
+```
+
+Whenever the URL changes,
+
+Angular replaces the content inside the router-outlet.
+
+---
+
+# Internal Working
+
+Suppose the URL is
+
+```
+localhost:4200/about
+```
+
+Angular checks
+
+```
+Routes[]
+
+↓
+
+path : "about"
+
+↓
+
+AboutComponent
+
+↓
+
+router-outlet
+
+↓
+
+Display AboutComponent
+```
+
+---
+
+# Complete Navigation Flow
+
+```
+User Clicks
+
+↓
+
+routerLink
+
+↓
+
+Angular Router
+
+↓
+
+Routes[]
+
+↓
+
+Matching Path
+
+↓
+
+Component Found
+
+↓
+
+router-outlet
+
+↓
+
+Display Component
+```
+
+---
+
+# Browser URLs
+
+```
+Home
+
+↓
+
+localhost:4200/home
+
+--------------------------
+
+Employee
+
+↓
+
+localhost:4200/employee
+
+--------------------------
+
+About
+
+↓
+
+localhost:4200/about
+
+--------------------------
+
+Contact
+
+↓
+
+localhost:4200/contact
+```
+
+---
+
+# Difference Between HTML <a> and routerLink
+
+| HTML Anchor | routerLink |
+|-------------|------------|
+| Reloads entire page | No page refresh |
+| Browser navigation | Angular Router navigation |
+| Requests new HTML page | Loads Component |
+| Slower | Faster |
+
+---
+
+# Programmatic Navigation
+
+Sometimes,
+
+navigation happens after a button click or after submitting a form.
+
+Angular provides the Router service.
+
+---
+
+## Step 1
+
+Import Router
+
+```ts
+import { Router } from '@angular/router';
+```
+
+---
+
+## Step 2
+
+Constructor Injection
+
+```ts
+constructor(
+
+private router:Router
+
+){}
+```
+
+---
+
+## Step 3
+
+Navigate
+
+```ts
+this.router.navigate(
+
+['/employee']
+
+);
+```
+
+Angular immediately navigates to
+
+```
+EmployeeComponent
+```
+
+---
+
+# When do we use navigate()?
+
+Examples
+
+- Login Successful
+
+```
+Login
+
+↓
+
+Dashboard
+```
+
+---
+
+- Registration Completed
+
+```
+Register
+
+↓
+
+Login Page
+```
+
+---
+
+- Save Employee
+
+```
+Save
+
+↓
+
+Employee List
+```
+
+---
+
+# routerLink vs navigate()
+
+| routerLink | navigate() |
+|------------|------------|
+| Used in HTML | Used in TypeScript |
+| User clicks link | Navigation through code |
+| Declarative | Programmatic |
+
+---
+
+# Execution Flow
+
+```
+Click Home
+
+↓
+
+routerLink="/home"
+
+↓
+
+Angular Router
+
+↓
+
+Routes[]
+
+↓
+
+HomeComponent
+
+↓
+
+router-outlet
+
+↓
+
+Display Home Page
+```
+
+---
+
+# Real Concept I Learned
+
+Initially,
+
+I thought `routerLink` worked like a normal HTML anchor tag.
+
+Later I understood that Angular does not reload the webpage.
+
+It only replaces the component inside the `router-outlet`.
+
+This is why Angular applications feel faster than traditional websites.
+
+---
+
+# Common Mistakes
+
+## ❌ Forgetting router-outlet
+
+```html
+<a routerLink="/home">
+
+Home
+
+</a>
+```
+
+Navigation occurs,
+
+but no component is displayed.
+
+Reason:
+
+```
+router-outlet
+
+is missing.
+```
+
+---
+
+## ❌ Using href Instead of routerLink
+
+Incorrect
+
+```html
+<a href="/home">
+
+Home
+
+</a>
+```
+
+This reloads the webpage.
+
+---
+
+Correct
+
+```html
+<a routerLink="/home">
+
+Home
+
+</a>
+```
+
+---
+
+## ❌ Wrong Route Name
+
+Incorrect
+
+```html
+routerLink="/employees"
+```
+
+If the route is
+
+```ts
+path:'employee'
+```
+
+Angular cannot find the route.
+
+---
+
+# 🧠 How I Remember It
+
+```
+routerLink
+
+↓
+
+Road
+
+-----------------------
+
+router-outlet
+
+↓
+
+Destination
+```
+
+or
+
+```
+routerLink
+
+↓
+
+GPS
+
+↓
+
+Find Address
+
+↓
+
+router-outlet
+
+↓
+
+Reach Destination
+```
+
+Whenever I hear Routing,
+
+I immediately think:
+
+```
+routerLink
+
+↓
+
+router-outlet
+```
+
+---
+
+# 🎯 Interview Nuggets
+
+✔ `routerLink` is used for navigation.
+
+✔ `router-outlet` displays the routed component.
+
+✔ Angular Router does not refresh the webpage.
+
+✔ `navigate()` is used for navigation inside TypeScript.
+
+✔ `routerLink` is preferred over HTML `href`.
+
+---
+
+# 📌 Key Takeaways
+
+- `routerLink` navigates between components.
+- `router-outlet` displays the selected component.
+- Angular Routing provides SPA navigation.
+- `navigate()` performs programmatic navigation.
+- Angular updates only the component, not the entire webpage.
+
+---
+
+## Next Chapter
+
+# 14.3 Route Parameters & ActivatedRoute
+
+Topics Covered
+
+- Route Parameters
+- Passing ID in URL
+- ActivatedRoute
+- snapshot
+- params Observable
+- Wildcard Route (404 Page)
+- Complete Routing Flow
+
+# 14.3 Route Parameters, ActivatedRoute & Wildcard Route
+
+In real-world applications,
+
+sometimes we need to pass data from one route to another.
+
+Instead of creating multiple components,
+
+Angular allows us to pass values through the URL using **Route Parameters**.
+
+---
+
+# What are Route Parameters?
+
+Route Parameters are values passed inside the URL.
+
+Example
+
+```
+localhost:4200/employee/1
+
+localhost:4200/employee/2
+
+localhost:4200/employee/3
+```
+
+Here,
+
+```
+1
+
+2
+
+3
+```
+
+are Route Parameters.
+
+---
+
+# Why do we need Route Parameters?
+
+Suppose the Employee table contains
+
+| ID | Name |
+|----|------|
+|1|Rahul|
+|2|Dhikshanth|
+|3|Arun|
+
+When the user clicks
+
+```
+View
+```
+
+Angular should open
+
+```
+localhost:4200/employee/2
+```
+
+and display only Employee 2.
+
+Instead of creating multiple pages,
+
+Angular uses Route Parameters.
+
+---
+
+# Step 1 - Configure Route
+
+## app-routing.module.ts
+
+```ts
+const routes: Routes = [
+
+{
+
+path:'employee/:id',
+
+component:EmployeeComponent
+
+}
+
+];
+```
+
+---
+
+# Understanding
+
+```
+employee
+
+↓
+
+Fixed Route
+
+------------------------
+
+:id
+
+↓
+
+Dynamic Route Parameter
+```
+
+Angular understands
+
+```
+employee/1
+
+employee/2
+
+employee/3
+```
+
+all belong to the same component.
+
+---
+
+# Step 2 - Navigate
+
+## app.component.html
+
+```html
+<a
+
+routerLink="/employee/1">
+
+Employee 1
+
+</a>
+```
+
+or
+
+```html
+<button
+
+(click)="viewEmployee(5)">
+
+View
+
+</button>
+```
+
+---
+
+## task.component.ts
+
+```ts
+constructor(
+
+private router:Router
+
+){}
+
+viewEmployee(id:number){
+
+this.router.navigate(
+
+['/employee',id]
+
+);
+
+}
+```
+
+Angular creates
+
+```
+localhost:4200/employee/5
+```
+
+---
+
+# Step 3 - Read Route Parameter
+
+## employee.component.ts
+
+```ts
+import {
+
+ActivatedRoute
+
+} from '@angular/router';
+
+constructor(
+
+private route:ActivatedRoute
+
+){}
+```
+
+---
+
+# Using snapshot
+
+```ts
+ngOnInit(){
+
+const id = this.route.snapshot.paramMap.get('id');
+
+console.log(id);
+
+}
+```
+
+Output
+
+```
+5
+```
+
+---
+
+# Understanding snapshot
+
+```
+Browser URL
+
+↓
+
+employee/5
+
+↓
+
+ActivatedRoute
+
+↓
+
+snapshot
+
+↓
+
+id
+
+↓
+
+5
+```
+
+snapshot reads the parameter once when the component loads.
+
+---
+
+# Using params Observable
+
+```ts
+ngOnInit(){
+
+this.route.params.subscribe((res)=>{
+
+console.log(res['id']);
+
+});
+
+}
+```
+
+Unlike snapshot,
+
+params updates automatically whenever the route changes.
+
+---
+
+# snapshot vs params
+
+| snapshot | params |
+|-----------|--------|
+| Reads once | Listens continuously |
+| Static | Dynamic |
+| Simpler | Observable |
+
+---
+
+# What is ActivatedRoute?
+
+ActivatedRoute is an Angular service that provides information about the currently active route.
+
+It is commonly used to access:
+
+- Route Parameters
+- Query Parameters
+- URL Data
+
+---
+
+# Wildcard Route (404 Page)
+
+Sometimes,
+
+users enter an invalid URL.
+
+Example
+
+```
+localhost:4200/xyz
+
+localhost:4200/test
+
+localhost:4200/student
+```
+
+Angular cannot find these routes.
+
+Instead of displaying a blank page,
+
+we show a
+
+```
+404 Page Not Found
+```
+
+---
+
+# Create Component
+
+```
+ng g c page-not-found
+```
+
+---
+
+# Configure Route
+
+## app-routing.module.ts
+
+```ts
+{
+
+path:'**',
+
+component:PageNotFoundComponent
+
+}
+```
+
+---
+
+# Why "**" ?
+
+```
+**
+
+↓
+
+Matches Every Unknown URL
+```
+
+This route should always be placed at the **end** of the Routes array.
+
+Otherwise,
+
+Angular will match every request with the wildcard route.
+
+---
+
+# Complete Routing Flow
+
+```
+Browser URL
+
+↓
+
+Angular Router
+
+↓
+
+Routes[]
+
+↓
+
+Matching Route?
+
+│
+
+├── Yes
+
+│
+
+▼
+
+Component
+
+↓
+
+router-outlet
+
+↓
+
+Display Page
+
+------------------------
+
+No
+
+↓
+
+Wildcard Route
+
+↓
+
+PageNotFoundComponent
+```
+
+---
+
+# Routing Lifecycle
+
+```
+Application Starts
+
+↓
+
+AppModule
+
+↓
+
+AppRoutingModule
+
+↓
+
+Routes Registered
+
+↓
+
+User Clicks Link
+
+↓
+
+Angular Router
+
+↓
+
+Match Path
+
+↓
+
+Component
+
+↓
+
+router-outlet
+
+↓
+
+Render Component
+```
+
+---
+
+# Complete Routing Summary
+
+| Concept | Purpose |
+|----------|----------|
+| RouterModule | Enables Routing |
+| Routes | Stores Routes |
+| routerLink | Navigate in HTML |
+| Router | Navigate in TypeScript |
+| router-outlet | Displays Component |
+| ActivatedRoute | Reads Current Route |
+| Route Parameter | Pass Data Through URL |
+| Wildcard Route | Handles Invalid URLs |
+
+---
+
+# Common Mistakes
+
+## ❌ Forgetting to Import AppRoutingModule
+
+Routing will not work.
+
+---
+
+## ❌ Missing router-outlet
+
+Navigation occurs,
+
+but nothing is displayed.
+
+---
+
+## ❌ Using href instead of routerLink
+
+The entire webpage reloads.
+
+---
+
+## ❌ Wildcard Route at the Top
+
+Incorrect
+
+```ts
+{
+
+path:'**',
+
+component:PageNotFoundComponent
+
+}
+```
+
+If placed first,
+
+every URL opens the 404 page.
+
+Always keep it at the **end**.
+
+---
+
+## ❌ Wrong Route Parameter
+
+Configured
+
+```ts
+employee/:id
+```
+
+Navigated
+
+```ts
+employee
+```
+
+Angular receives
+
+```
+id = null
+```
+
+---
+
+# Real Concepts I Learned
+
+Initially,
+
+I thought every page required a separate component.
+
+Later I understood that one component can display multiple records by receiving different IDs through Route Parameters.
+
+I also learned that `snapshot` reads the parameter once, while `params` continues listening for route changes.
+
+---
+
+# 🧠 How I Remember Routing
+
+```
+routerLink
+
+↓
+
+Angular Router
+
+↓
+
+Routes[]
+
+↓
+
+Component
+
+↓
+
+router-outlet
+
+↓
+
+Display
+
+------------------------
+
+Need Data?
+
+↓
+
+:id
+
+↓
+
+ActivatedRoute
+
+↓
+
+Component
+
+------------------------
+
+Wrong URL?
+
+↓
+
+**
+
+↓
+
+404 Page
+```
+
+---
+
+# 🎯 Interview Nuggets
+
+✔ Routing converts an Angular application into a Single Page Application.
+
+✔ `routerLink` is used in HTML.
+
+✔ `navigate()` is used in TypeScript.
+
+✔ `router-outlet` displays the routed component.
+
+✔ `ActivatedRoute` reads route parameters.
+
+✔ `snapshot` reads parameters once.
+
+✔ `params` is an Observable.
+
+✔ Wildcard Route (`**`) handles invalid URLs.
+
+✔ Wildcard Route should always be the last route.
+
+---
+
+# 📌 Key Takeaways
+
+- Routing enables navigation without refreshing the webpage.
+- Every route maps a URL to a component.
+- Route Parameters allow passing values through the URL.
+- ActivatedRoute retrieves route information.
+- Wildcard Routes improve user experience by handling invalid URLs.
+- Routing is one of the core features of Angular applications.
+
+# 15. Component Communication (@Input & @Output)
+
+In Angular, components often need to communicate with each other.
+
+Communication happens in two ways:
+
+```
+Parent → Child
+
+using
+
+@Input()
+
+----------------------
+
+Child → Parent
+
+using
+
+@Output()
+```
+
+---
+
+# Component Communication
+
+```
+Parent Component
+
+↓
+
+@Input()
+
+↓
+
+Child Component
+
+--------------------------
+
+Child Component
+
+↓
+
+@Output()
+
+↓
+
+Parent Component
+```
+
+---
+
+# @Input() Decorator
+
+## What is @Input()?
+
+`@Input()` is a decorator used to send data from the **Parent Component** to the **Child Component**.
+
+Direction:
+
+```
+Parent
+
+↓
+
+Child
+```
+
+---
+
+# Why do we use @Input()?
+
+Suppose the Parent Component has employee details.
+
+Instead of writing the same data again inside the Child Component,
+
+the Parent passes the data using `@Input()`.
+
+---
+
+# Example
+
+## Parent Component (parent.component.ts)
+
+```ts
+employeeName="Dhikshanth";
+```
+
+---
+
+## Parent Component HTML
+
+```html
+<app-child
+
+[name]="employeeName">
+
+</app-child>
+```
+
+---
+
+## Child Component (child.component.ts)
+
+```ts
+import { Input } from '@angular/core';
+
+export class ChildComponent{
+
+@Input()
+
+name:any;
+
+}
+```
+
+---
+
+## Child Component HTML
+
+```html
+<h2>
+
+{{name}}
+
+</h2>
+```
+
+---
+
+# Execution Flow
+
+```
+Parent Component
+
+↓
+
+employeeName
+
+↓
+
+@Input()
+
+↓
+
+Child Component
+
+↓
+
+Display Data
+```
+
+---
+
+# How I Remember @Input()
+
+```
+Input
+
+↓
+
+Receive
+
+↓
+
+Parent Sends
+
+↓
+
+Child Receives
+```
+
+Whenever I hear **@Input()**,
+
+I immediately think:
+
+> **Parent sends data to Child.**
+
+---
+
+# @Output() Decorator
+
+## What is @Output()?
+
+`@Output()` is a decorator used to send data or events from the **Child Component** to the **Parent Component**.
+
+Direction:
+
+```
+Child
+
+↓
+
+Parent
+```
+
+Unlike `@Input()`,
+
+`@Output()` uses an **EventEmitter**.
+
+---
+
+# Why do we use @Output()?
+
+Suppose the Child Component has a button.
+
+When the user clicks the button,
+
+the Parent Component should know about it.
+
+The Child sends an event using `@Output()`.
+
+---
+
+# Example
+
+## Child Component (child.component.ts)
+
+```ts
+import {
+
+Output,
+
+EventEmitter
+
+} from '@angular/core';
+
+export class ChildComponent{
+
+@Output()
+
+sendData = new EventEmitter<string>();
+
+send(){
+
+this.sendData.emit(
+
+"Hello Parent"
+
+);
+
+}
+
+}
+```
+
+---
+
+## Child Component HTML
+
+```html
+<button
+
+(click)="send()">
+
+Send
+
+</button>
+```
+
+---
+
+## Parent Component HTML
+
+```html
+<app-child
+
+(sendData)="receive($event)">
+
+</app-child>
+```
+
+---
+
+## Parent Component TS
+
+```ts
+receive(data:any){
+
+console.log(data);
+
+}
+```
+
+Output
+
+```
+Hello Parent
+```
+
+---
+
+# Understanding EventEmitter
+
+`EventEmitter` is used to send events or data from the Child Component to the Parent Component.
+
+```
+Child
+
+↓
+
+EventEmitter
+
+↓
+
+Parent
+```
+
+Without `EventEmitter`,
+
+`@Output()` cannot send data.
+
+---
+
+# Execution Flow
+
+```
+Button Click
+
+↓
+
+send()
+
+↓
+
+EventEmitter
+
+↓
+
+@Output()
+
+↓
+
+Parent Component
+
+↓
+
+receive()
+
+↓
+
+Display Data
+```
+
+---
+
+# @Input() vs @Output()
+
+| @Input() | @Output() |
+|-----------|-----------|
+| Parent → Child | Child → Parent |
+| Receives Data | Sends Data |
+| Uses @Input | Uses @Output + EventEmitter |
+| One-way Input | One-way Output |
+
+---
+
+# Complete Component Communication
+
+```
+Parent Component
+
+↓
+
+@Input()
+
+↓
+
+Child Component
+
+↓
+
+Button Click
+
+↓
+
+EventEmitter
+
+↓
+
+@Output()
+
+↓
+
+Parent Component
+```
+
+---
+
+# Real Concept I Learned
+
+Initially,
+
+I thought components could directly access each other's variables.
+
+Later I understood that Angular keeps components independent.
+
+To communicate,
+
+Angular provides:
+
+- `@Input()` for Parent → Child communication.
+- `@Output()` with `EventEmitter` for Child → Parent communication.
+
+This makes components reusable and loosely coupled.
+
+---
+
+# Common Mistakes
+
+## ❌ Forgetting @Input()
+
+The Child Component cannot receive data.
+
+---
+
+## ❌ Forgetting @Output()
+
+The Parent Component never receives the event.
+
+---
+
+## ❌ Forgetting EventEmitter
+
+```ts
+@Output()
+
+sendData;
+```
+
+This cannot emit any data.
+
+Always use:
+
+```ts
+new EventEmitter()
+```
+
+---
+
+## ❌ Forgetting emit()
+
+```ts
+sendData.emit(data);
+```
+
+Without `emit()`,
+
+the Parent Component will never receive the value.
+
+---
+
+# 🧠 Quick Revision
+
+```
+Parent
+
+↓
+
+@Input()
+
+↓
+
+Child
+
+-------------------------
+
+Child
+
+↓
+
+@Output()
+
+↓
+
+EventEmitter
+
+↓
+
+Parent
+```
+
+---
+
+# 🎯 Interview Nuggets
+
+✔ `@Input()` sends data from Parent to Child.
+
+✔ `@Output()` sends events from Child to Parent.
+
+✔ `EventEmitter` is used with `@Output()`.
+
+✔ Components communicate without directly accessing each other's variables.
+
+✔ Component communication keeps Angular applications modular and reusable.
+
+---
+
+# 📌 Key Takeaways
+
+- `@Input()` receives data from the Parent Component.
+- `@Output()` sends events or data to the Parent Component.
+- `EventEmitter` is required for `@Output()`.
+- Parent and Child Components communicate in a structured and reusable way.
+
+# 16. RxJS (Reactive Extensions for JavaScript)
+
+RxJS is a library used to handle **asynchronous data** in Angular.
+
+Angular uses RxJS for:
+
+- HTTP Requests
+- API Calls
+- User Events
+- Timers
+- Form Changes
+
+---
+
+# Why do we need RxJS?
+
+Some operations take time to complete.
+
+Examples:
+
+- API Request
+- Database Fetch
+- User Click
+- Timer
+- Search Suggestions
+
+Instead of waiting,
+
+Angular continues executing other code and processes the response when it arrives.
+
+---
+
+# Observable
+
+## What is an Observable?
+
+An Observable is a stream of data that produces values over time.
+
+Angular's `HttpClient` returns an Observable.
+
+Example
+
+```ts
+this.http.get(url)
+```
+
+returns
+
+```ts
+Observable
+```
+
+---
+
+# Observer
+
+The Observer receives data emitted by an Observable.
+
+Example
+
+```ts
+.subscribe((res)=>{
+
+console.log(res);
+
+});
+```
+
+Here,
+
+```ts
+(res)=>{
+
+console.log(res);
+
+}
+```
+
+acts as the Observer.
+
+---
+
+# subscribe()
+
+`subscribe()` starts the Observable.
+
+Without `subscribe()`,
+
+the HTTP request is never executed.
+
+Example
+
+```ts
+this.http.get(url)
+
+.subscribe((res)=>{
+
+console.log(res);
+
+});
+```
+
+---
+
+# Observable Flow
+
+```
+API
+
+↓
+
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+Response
+
+↓
+
+Component
+
+↓
+
+UI Updated
+```
+
+---
+
+# Common Operators
+
+## map()
+
+Transforms data.
+
+```ts
+data
+
+↓
+
+map()
+
+↓
+
+Modified Data
+```
+
+---
+
+## filter()
+
+Filters required data.
+
+```ts
+Array
+
+↓
+
+filter()
+
+↓
+
+Required Records
+```
+
+---
+
+## tap()
+
+Performs side effects like logging.
+
+```ts
+tap((res)=>{
+
+console.log(res);
+
+});
+```
+
+---
+
+# Real Concept I Learned
+
+Initially,
+
+I thought
+
+```ts
+this.http.get()
+```
+
+returned data directly.
+
+Later I understood that it returns an **Observable**.
+
+Only after calling
+
+```ts
+.subscribe()
+```
+
+does Angular execute the request and receive the response.
+
+---
+
+# Observable vs Promise
+
+| Observable | Promise |
+|------------|---------|
+| Multiple values | Single value |
+| Lazy Execution | Executes immediately |
+| Can be Cancelled | Cannot be Cancelled |
+| Used by Angular HttpClient | Native JavaScript |
+
+---
+
+# 🧠 How I Remember RxJS
+
+```
+Observable
+
+↓
+
+subscribe()
+
+↓
+
+Response
+
+↓
+
+UI
+```
+
+Whenever I hear RxJS,
+
+I immediately think:
+
+> **Observable + subscribe()**
+
+---
+
+# 🎯 Interview Nuggets
+
+✔ RxJS stands for Reactive Extensions for JavaScript.
+
+✔ Angular HttpClient returns an Observable.
+
+✔ `subscribe()` executes the Observable.
+
+✔ Operators like `map()`, `filter()`, and `tap()` help process data.
+
+---
+
+# 📌 Key Takeaways
+
+- RxJS handles asynchronous operations.
+- Angular uses Observables for HTTP communication.
+- `subscribe()` is mandatory to receive data.
+- Operators transform and filter data.
+
+# Zone.js in Angular
+
+## What is Zone.js?
+
+Zone.js is a JavaScript library used by Angular to **track asynchronous operations** happening inside an application.
+
+Angular uses Zone.js to know **when something has changed** and when it should run **change detection** to update the UI.
+
+In simple words:
+
+> Zone.js acts as a bridge between asynchronous operations and Angular's change detection system.
+
+---
+
+# Why does Angular need Zone.js?
+
+JavaScript executes code synchronously by default.
+
+Example:
+
+```ts
+console.log("Start");
+
+let value = 10;
+
+console.log(value);
+
+console.log("End");```

@@ -57,9 +57,9 @@ export class TaskComponent {
         alert("Form submitted");
         this.crud.addStudent(this.taskform.value).subscribe((res)=>{
           console.log(res);
+          this.getUser();
+          this.taskform.reset();
         });
-        this.getUser();
-        this.taskform.reset();
       }
     }else{
       this.taskform.markAllAsTouched();
