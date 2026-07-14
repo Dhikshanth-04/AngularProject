@@ -464,3 +464,484 @@ In the next section, we will learn about:
 - Node.js
 - Why Angular Needs Node.js
 - Dependency Tree
+
+# 3. Angular Core Architecture
+
+Before learning Angular CLI, project structure, routing, or forms, it is important to understand the core building blocks of Angular.
+
+Every Angular application is built using these fundamental concepts.
+
+In this section, we will cover:
+
+- Modules
+- Components
+- Decorators
+- NgModule
+
+These concepts form the foundation of every Angular application.
+
+---
+
+# Modules
+
+## Definition
+
+A **Module** is a logical container that groups or organizes related Angular building blocks together.
+
+Instead of placing every component, directive, pipe and service inside one place, Angular groups related functionality into modules.
+
+This makes the application easier to organize, maintain and scale.
+
+---
+
+## Example
+
+Authentication Module
+
+```
+Authentication Module
+│
+├── Login Component
+├── Register Component
+└── Forgot Password Component
+```
+
+Instead of creating unrelated components together, Angular groups components based on their functionality.
+
+---
+
+## Why do we need Modules?
+
+Modules help to:
+
+- Organize related functionality
+- Improve maintainability
+- Improve scalability
+- Keep the project structure clean
+- Separate different features of the application
+
+---
+
+> 💡 **Remember**
+>
+> Think of a Module as a **folder that groups similar Angular building blocks together.**
+
+---
+
+> 🎯 **Interview Question**
+>
+> **What is a Module in Angular?**
+
+**Answer**
+
+A Module is a logical container that groups related Angular building blocks together. It helps organize the application into different features, making it easier to develop, maintain and scale.
+
+---
+
+# Components
+
+## Definition
+
+A **Component** is the reusable UI unit of an Angular application.
+
+Every screen that the user sees is built using one or more components.
+
+A component contains four parts:
+
+- HTML Template (Structure)
+- CSS Stylesheet (Appearance)
+- TypeScript Class (Business Logic)
+- `@Component` Decorator (Metadata)
+
+---
+
+## Component Structure
+
+```
+Component
+│
+├── HTML
+│     Defines the UI
+│
+├── CSS
+│     Defines the appearance
+│
+├── TypeScript
+│     Contains business logic
+│
+└── @Component
+      Connects everything together
+```
+
+---
+
+## HTML
+
+Defines the structure of the UI.
+
+Example:
+
+```html
+<h1>Welcome</h1>
+```
+
+---
+
+## CSS
+
+Defines how the UI looks.
+
+Example:
+
+```css
+h1{
+    color: blue;
+}
+```
+
+---
+
+## TypeScript
+
+Contains the business logic.
+
+Example:
+
+```ts
+title = "Angular";
+```
+
+---
+
+## @Component
+
+Provides metadata that tells Angular how the component should behave.
+
+Example
+
+```ts
+@Component({
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
+})
+```
+
+---
+
+## Single Responsibility Principle (SRP)
+
+Each component should have **only one responsibility**.
+
+Example
+
+Instead of one component handling:
+
+- Login
+- Registration
+- Dashboard
+- Profile
+
+Create separate components:
+
+```
+Login Component
+
+Register Component
+
+Dashboard Component
+
+Profile Component
+```
+
+Each component should do only one job.
+
+This principle is called the **Single Responsibility Principle (SRP).**
+
+---
+
+## Why Components?
+
+Components provide:
+
+- Reusability
+- Better Code Organization
+- Easier Maintenance
+- Scalability
+- Separation of Concerns
+
+---
+
+> 💡 **Remember**
+>
+> Everything you see on an Angular page is made up of Components.
+
+---
+
+> 🎯 **Interview Question**
+
+**What is a Component?**
+
+**Answer**
+
+A Component is the reusable UI unit of an Angular application. It contains an HTML template, CSS stylesheet, TypeScript class and an `@Component` decorator which provides metadata connecting all these parts together.
+
+---
+
+# Decorators
+
+## Definition
+
+Decorators provide **metadata**.
+
+Metadata simply means:
+
+> **Data about the data.**
+
+Angular uses decorators to understand what a particular class represents.
+
+Without decorators, Angular treats a class as a normal TypeScript class.
+
+Decorators tell Angular whether the class is:
+
+- Component
+- Module
+- Service
+- Directive
+- Pipe
+
+---
+
+## Common Angular Decorators
+
+| Decorator | Purpose |
+|------------|----------|
+| `@Component` | Represents a Component |
+| `@NgModule` | Represents a Module |
+| `@Injectable` | Represents a Service |
+| `@Directive` | Represents a Directive |
+| `@Pipe` | Represents a Pipe |
+| `@Input` | Receives data from Parent |
+| `@Output` | Sends data to Parent |
+
+---
+
+## Example
+
+```ts
+@Component({
+    selector: 'app-home'
+})
+```
+
+Here,
+
+`@Component` tells Angular:
+
+> "This class is a Component."
+
+Without it, Angular will not recognize the class as a component.
+
+---
+
+> 💡 **Remember**
+>
+> Decorators don't contain business logic.
+>
+> They only provide information (metadata) to Angular.
+
+---
+
+> 🎯 **Interview Question**
+
+**What is a Decorator?**
+
+**Answer**
+
+A Decorator is a special function that provides metadata to Angular. It tells Angular what a class represents and how Angular should process it.
+
+---
+
+# NgModule
+
+## Definition
+
+`@NgModule` is the decorator that provides metadata about an Angular Module.
+
+It registers information such as:
+
+- Components
+- Directives
+- Pipes
+- Imports
+- Providers
+- Bootstrap Component
+
+When the application starts, Angular uses this metadata to understand the application's structure.
+
+---
+
+## What does NgModule contain?
+
+```
+@NgModule({
+
+    declarations: [],
+
+    imports: [],
+
+    providers: [],
+
+    bootstrap: []
+
+})
+```
+
+---
+
+### declarations
+
+Registers:
+
+- Components
+- Directives
+- Pipes
+
+Example
+
+```ts
+declarations: [
+    AppComponent,
+    HomeComponent
+]
+```
+
+---
+
+### imports
+
+Imports other Angular Modules.
+
+Example
+
+```ts
+imports: [
+    BrowserModule,
+    FormsModule
+]
+```
+
+---
+
+### providers
+
+Registers Services.
+
+Example
+
+```ts
+providers: [
+    ProductService
+]
+```
+
+---
+
+### bootstrap
+
+Specifies the first component that Angular should load when the application starts.
+
+Example
+
+```ts
+bootstrap: [
+    AppComponent
+]
+```
+
+---
+
+## Workflow
+
+```
+Application Starts
+        │
+        ▼
+Angular Reads @NgModule
+        │
+        ▼
+Finds Components
+        │
+        ▼
+Finds Imports
+        │
+        ▼
+Finds Services
+        │
+        ▼
+Loads Bootstrap Component
+        │
+        ▼
+Application Starts Successfully
+```
+
+---
+
+> 💡 **Remember**
+>
+> `@NgModule` is **not** the module itself.
+>
+> It is the **decorator** that provides metadata about the module.
+
+---
+
+> ⚠️ Common Confusion
+
+Many beginners say:
+
+> "NgModule is the Module."
+
+Correct understanding:
+
+- Module → The TypeScript class
+- `@NgModule` → The decorator that provides metadata about that class
+
+---
+
+> 🎯 **Interview Question**
+
+**What is `@NgModule`?**
+
+**Answer**
+
+`@NgModule` is the Angular decorator that provides metadata about a module. It tells Angular which components, directives, pipes, services, imports and bootstrap component belong to that module.
+
+---
+
+# Quick Revision
+
+✔ What is a Module?
+
+✔ Why do we use Modules?
+
+✔ What is a Component?
+
+✔ Four parts of a Component
+
+✔ What is Single Responsibility Principle?
+
+✔ What is a Decorator?
+
+✔ Why do we need Decorators?
+
+✔ What is `@NgModule`?
+
+✔ Difference between a Module and `@NgModule`
+
+---
+
+➡️ **Continued in Volume 2A.2**
+- Bootstrapping
+- Node.js
+- Why Angular Needs Node.js
+- Dependency Tree
